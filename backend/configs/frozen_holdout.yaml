@@ -1,0 +1,86 @@
+# KEPLER — Frozen Holdout Set
+# ==============================
+# Permanently reserved for evaluation ONLY.
+# These tickers must NEVER appear in any training, feature-fitting,
+# hyperparameter selection, or SMOTE resampling step.
+#
+# Selected: all of NIFTY_500_EXTRA (genuinely never trained on in any phase)
+# plus additional Nifty500 names to reach ~15% of the 500-stock universe.
+#
+# HARD RULE: if a frozen ticker ever appears in a training file, the
+# test suite in tests/test_no_holdout_leakage.py will fail the build.
+# Do not add these to NIFTY_200_EXTRA or NIFTY_500_EXTRA in train_model.py.
+
+metadata:
+  created:        "2026-08-23"
+  reason:         "Prevent OOD→in-sample contamination as universe expands"
+  total_tickers:  42
+  target_pct_of_nifty500: "~15%"
+  sectors_covered:
+    - Finance/Insurance
+    - Media/Entertainment
+    - Specialty Retail
+    - Small Pharma
+    - Small IT/Tech
+    - Healthcare
+    - Industrials/Specialty
+
+# ── All of NIFTY_500_EXTRA — the genuine OOD set from Phase 0/1 ──────────────
+tickers:
+
+  # Finance / Insurance / Broking
+  - ICICIGI        # ICICI Lombard General Insurance
+  - SBICARD        # SBI Cards
+  - CHOLAHLDNG     # Cholamandalam Financial Holdings
+  - MOTILALOFS     # Motilal Oswal
+  - ANGELONE       # Angel One
+  - 5PAISA         # 5Paisa Capital
+  - IIFL           # IIFL Finance
+  - MASFIN         # Mas Financial
+  - SPANDANA       # Spandana Sphoorty
+
+  # Media / Entertainment
+  - ZEEL           # Zee Entertainment
+  - PVRINOX        # PVR Inox
+  - INOXWIND       # Inox Wind
+
+  # Power / Specialty Industrials
+  - KALPATPOWR     # Kalpataru Power
+  - GPPL           # Gujarat Pipavav Port
+
+  # Consumer / Lifestyle / Retail
+  - RAJESHEXPO     # Rajesh Exports
+  - CENTURYTEX     # Century Textiles
+  - RAYMOND        # Raymond
+  - PAGEIND        # Page Industries (Jockey)
+  - CRAFTSMAN      # Craftsman Automation
+  - KALYANKJIL     # Kalyan Jewellers
+  - SENCO          # Senco Gold
+  - PCJEWELLER     # PC Jeweller
+
+  # Pharma — small/specialty (genuinely harder than large Pharma)
+  - GLENMARK       # Glenmark Pharmaceuticals
+  - NATCOPHARM     # Natco Pharma
+  - GLAND          # Gland Pharma
+  - JBCHEPHARM     # JB Chemicals
+  - ERIS           # Eris Lifesciences
+  - GRANULES       # Granules India
+  - CAPLIPOINT     # Caplin Point
+  - MARKSANS       # Marksans Pharma
+
+  # Small IT / Tech / Platform
+  - TANLA          # Tanla Platforms
+  - INTELLECT      # Intellect Design
+  - NEWGEN         # Newgen Software
+  - RATEGAIN       # RateGain Travel
+  - INDIAMART      # IndiaMART InterMesh
+  - NAUKRI         # Info Edge (Naukri)
+  - POLICYBZR      # PB Fintech (Policybazaar)
+  - TATAELXSI      # Tata Elxsi
+  - CYIENT         # Cyient
+  - ZENSARTECH     # Zensar Technologies
+  - BIRLASOFT      # Birlasoft
+
+  # Healthcare — small/mid
+  - ASTERDM        # Aster DM Healthcare
+  - NH             # Narayana Hrudayalaya

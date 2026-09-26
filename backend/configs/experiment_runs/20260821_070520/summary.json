@@ -1,0 +1,113 @@
+{
+  "run_id": "20260821_070520",
+  "universe": "nifty200",
+  "model_backend": "lgbm",
+  "history_years": 8,
+  "n_folds": 5,
+  "embargo_days": 15,
+  "aggregate": {
+    "n_folds": 5,
+    "auc_mean": 0.5723,
+    "auc_std": 0.0119,
+    "ap_mean": 0.2784,
+    "ap_std": 0.0516,
+    "prec_mean": 0.3667,
+    "rec_mean": 0.0139,
+    "f1_mean": 0.0265
+  },
+  "fold_metrics": [
+    {
+      "fold": 1,
+      "test_start": "2020-03-23",
+      "test_end": "2021-06-21",
+      "n_test": 43202,
+      "n_positive": 13874,
+      "n_negative": 29328,
+      "base_rate": 0.3211,
+      "auc": 0.5681,
+      "avg_prec": 0.3766,
+      "precision": 0.4842,
+      "recall": 0.011,
+      "f1": 0.0216,
+      "n_train": 51426
+    },
+    {
+      "fold": 2,
+      "test_start": "2021-07-02",
+      "test_end": "2022-09-29",
+      "n_test": 44328,
+      "n_positive": 10310,
+      "n_negative": 34018,
+      "base_rate": 0.2326,
+      "auc": 0.5673,
+      "avg_prec": 0.2713,
+      "precision": 0.2887,
+      "recall": 0.0109,
+      "f1": 0.0209,
+      "n_train": 97023
+    },
+    {
+      "fold": 3,
+      "test_start": "2022-10-13",
+      "test_end": "2024-01-12",
+      "n_test": 44950,
+      "n_positive": 9503,
+      "n_negative": 35447,
+      "base_rate": 0.2114,
+      "auc": 0.5808,
+      "avg_prec": 0.2671,
+      "precision": 0.3709,
+      "recall": 0.019,
+      "f1": 0.0362,
+      "n_train": 149367
+    },
+    {
+      "fold": 4,
+      "test_start": "2024-01-29",
+      "test_end": "2025-05-02",
+      "n_test": 44950,
+      "n_positive": 9617,
+      "n_negative": 35333,
+      "base_rate": 0.2139,
+      "auc": 0.5554,
+      "avg_prec": 0.2502,
+      "precision": 0.3492,
+      "recall": 0.0046,
+      "f1": 0.009,
+      "n_train": 204081
+    },
+    {
+      "fold": 5,
+      "test_start": "2025-05-15",
+      "test_end": "2026-08-07",
+      "n_test": 45192,
+      "n_positive": 7673,
+      "n_negative": 37519,
+      "base_rate": 0.1698,
+      "auc": 0.5899,
+      "avg_prec": 0.2267,
+      "precision": 0.3407,
+      "recall": 0.024,
+      "f1": 0.0448,
+      "n_train": 258246
+    }
+  ],
+  "top_features": {
+    "pct_from_52l": 562.4,
+    "pct_from_52h": 460.0,
+    "ema_200": 366.8,
+    "price_vs_ema200": 343.8,
+    "bb_width": 310.2,
+    "pct_vs_sma50": 272.4,
+    "ema_20": 257.0,
+    "macd_signal": 250.0,
+    "adx_14": 237.8,
+    "ema_50": 228.4
+  },
+  "config": {
+    "forward_days": 10,
+    "threshold_pct": 5.0,
+    "use_smote": true,
+    "tune_hyperparams": false
+  }
+}

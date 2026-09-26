@@ -1,0 +1,56 @@
+{
+  "near_52w_high": {
+    "pct_threshold": 5.0
+  },
+  "breakout_52w": {
+    "min_volume_ratio": 1.2
+  },
+  "volume_surge": {
+    "vol_ratio": 3.0,
+    "require_positive_close": true
+  },
+  "momentum_leaders": {
+    "required": true
+  },
+  "rsi_oversold_bounce": {
+    "rsi_min": 25,
+    "rsi_max": 45,
+    "require_above_200dma": true
+  },
+  "rsi_momentum": {
+    "rsi_threshold": 65
+  },
+  "vcp_tight": {
+    "volatility_threshold": 3.0
+  },
+  "golden_crossover": {
+    "required": true
+  },
+  "high_rs": {
+    "rs_threshold": 80
+  },
+  "ema_pullback_bounce": {
+    "pullback_ema": 20,
+    "trend_ema": 50
+  },
+  "marubozu_breakout": {
+    "body_pct_threshold": 0.8,
+    "vol_ratio": 1.5
+  },
+  "stage2_base_breakout": {
+    "base_length": 60
+  },
+  "accumulation_zone": {
+    "range_pct": 5.0,
+    "vol_ratio": 1.2
+  },
+  "news_catalyst_momentum": {
+    "vol_ratio": 2.0,
+    "price_move_pct": 2.0
+  },
+  "system": {
+    "WIN_RATE_THRESHOLD": 15.0,
+    "PROFIT_FACTOR_MIN": 0.5,
+    "GAIN_THRESHOLD_PCT": 5.0
+  }
+}

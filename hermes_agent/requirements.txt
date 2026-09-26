@@ -1,0 +1,5 @@
+ollama
+python-frontmatter
+schedule
+rich
+pathlib2

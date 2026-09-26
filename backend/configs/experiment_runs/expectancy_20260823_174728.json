@@ -1,0 +1,177 @@
+{
+  "generated_at": "2026-08-23T17:47:28.966180Z",
+  "holdout_symbols": 43,
+  "holdout_rows": 70285,
+  "positive_rate": 0.2558,
+  "trade_value_inr": 50000.0,
+  "cost_pct": 0.3929,
+  "primary_expectancy": [
+    {
+      "threshold": 0.25,
+      "n_trades": 61252,
+      "hit_rate": 0.2641,
+      "avg_win_pct": 12.01,
+      "avg_loss_pct": -2.88,
+      "gross_exp": 1.051,
+      "cost_pct": 0.393,
+      "net_exp": 0.658,
+      "verdict": "\u2705 Edge"
+    },
+    {
+      "threshold": 0.3,
+      "n_trades": 52609,
+      "hit_rate": 0.2713,
+      "avg_win_pct": 12.17,
+      "avg_loss_pct": -2.99,
+      "gross_exp": 1.12,
+      "cost_pct": 0.393,
+      "net_exp": 0.727,
+      "verdict": "\u2705 Edge"
+    },
+    {
+      "threshold": 0.35,
+      "n_trades": 41413,
+      "hit_rate": 0.2815,
+      "avg_win_pct": 12.36,
+      "avg_loss_pct": -3.16,
+      "gross_exp": 1.207,
+      "cost_pct": 0.393,
+      "net_exp": 0.814,
+      "verdict": "\u2705 Edge"
+    },
+    {
+      "threshold": 0.4,
+      "n_trades": 28824,
+      "hit_rate": 0.2958,
+      "avg_win_pct": 12.78,
+      "avg_loss_pct": -3.38,
+      "gross_exp": 1.403,
+      "cost_pct": 0.393,
+      "net_exp": 1.01,
+      "verdict": "\u2705 Edge"
+    },
+    {
+      "threshold": 0.45,
+      "n_trades": 17677,
+      "hit_rate": 0.3111,
+      "avg_win_pct": 13.42,
+      "avg_loss_pct": -3.68,
+      "gross_exp": 1.637,
+      "cost_pct": 0.393,
+      "net_exp": 1.244,
+      "verdict": "\u2705 Edge"
+    },
+    {
+      "threshold": 0.5,
+      "n_trades": 10149,
+      "hit_rate": 0.3342,
+      "avg_win_pct": 14.06,
+      "avg_loss_pct": -4.06,
+      "gross_exp": 1.998,
+      "cost_pct": 0.393,
+      "net_exp": 1.605,
+      "verdict": "\u2705 Edge"
+    },
+    {
+      "threshold": 0.55,
+      "n_trades": 5615,
+      "hit_rate": 0.3605,
+      "avg_win_pct": 14.76,
+      "avg_loss_pct": -4.51,
+      "gross_exp": 2.432,
+      "cost_pct": 0.393,
+      "net_exp": 2.039,
+      "verdict": "\u2705 Edge"
+    },
+    {
+      "threshold": 0.6,
+      "n_trades": 3106,
+      "hit_rate": 0.3847,
+      "avg_win_pct": 15.68,
+      "avg_loss_pct": -4.81,
+      "gross_exp": 3.074,
+      "cost_pct": 0.393,
+      "net_exp": 2.681,
+      "verdict": "\u2705 Edge"
+    }
+  ],
+  "meta_expectancy": [
+    {
+      "threshold": 0.1,
+      "n_trades": 69785,
+      "hit_rate": 0.2559,
+      "avg_win_pct": 11.85,
+      "avg_loss_pct": -2.81,
+      "gross_exp": 0.941,
+      "cost_pct": 0.393,
+      "net_exp": 0.548,
+      "verdict": "\u2705 Edge"
+    },
+    {
+      "threshold": 0.15,
+      "n_trades": 66693,
+      "hit_rate": 0.2588,
+      "avg_win_pct": 11.9,
+      "avg_loss_pct": -2.83,
+      "gross_exp": 0.981,
+      "cost_pct": 0.393,
+      "net_exp": 0.588,
+      "verdict": "\u2705 Edge"
+    },
+    {
+      "threshold": 0.2,
+      "n_trades": 58328,
+      "hit_rate": 0.2666,
+      "avg_win_pct": 12.06,
+      "avg_loss_pct": -2.92,
+      "gross_exp": 1.078,
+      "cost_pct": 0.393,
+      "net_exp": 0.685,
+      "verdict": "\u2705 Edge"
+    },
+    {
+      "threshold": 0.25,
+      "n_trades": 44100,
+      "hit_rate": 0.2789,
+      "avg_win_pct": 12.32,
+      "avg_loss_pct": -3.12,
+      "gross_exp": 1.184,
+      "cost_pct": 0.393,
+      "net_exp": 0.791,
+      "verdict": "\u2705 Edge"
+    },
+    {
+      "threshold": 0.3,
+      "n_trades": 26879,
+      "hit_rate": 0.2984,
+      "avg_win_pct": 12.86,
+      "avg_loss_pct": -3.38,
+      "gross_exp": 1.465,
+      "cost_pct": 0.393,
+      "net_exp": 1.072,
+      "verdict": "\u2705 Edge"
+    },
+    {
+      "threshold": 0.35,
+      "n_trades": 13210,
+      "hit_rate": 0.3227,
+      "avg_win_pct": 13.74,
+      "avg_loss_pct": -3.8,
+      "gross_exp": 1.861,
+      "cost_pct": 0.393,
+      "net_exp": 1.468,
+      "verdict": "\u2705 Edge"
+    },
+    {
+      "threshold": 0.4,
+      "n_trades": 5989,
+      "hit_rate": 0.3547,
+      "avg_win_pct": 14.72,
+      "avg_loss_pct": -4.43,
+      "gross_exp": 2.363,
+      "cost_pct": 0.393,
+      "net_exp": 1.971,
+      "verdict": "\u2705 Edge"
+    }
+  ]
+}

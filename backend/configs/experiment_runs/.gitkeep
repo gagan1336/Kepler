@@ -1,0 +1,7 @@
+# Experiment run logs are written here at training time.
+# Each run gets its own subdirectory: configs/experiment_runs/<timestamp>/
+#   fold_01.json  …  fold_N.json   — per-fold metrics
+#   summary.json                   — aggregate metrics + config
+#   coverage_report.json           — ticker coverage gaps (if --coverage enabled)
+#
+# These files are intentionally excluded from git (see .gitignore).

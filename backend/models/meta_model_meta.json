@@ -1,0 +1,35 @@
+{
+  "trained_at": "2026-08-24T10:15:28.018041Z",
+  "meta_features": [
+    "primary_prob",
+    "atr_14",
+    "bb_width",
+    "hl_ratio",
+    "rsi_14",
+    "adx_14",
+    "roc_20",
+    "pct_from_52l",
+    "price_vs_ema200",
+    "volume_ratio",
+    "bb_pct_b",
+    "pct_vs_sma50"
+  ],
+  "n_train": 177560,
+  "n_val": 44390,
+  "meta_auc": 0.5846,
+  "meta_ap": 0.2098,
+  "feature_importances": {
+    "hl_ratio": 7.0,
+    "primary_prob": 5.0,
+    "bb_width": 4.0,
+    "pct_from_52l": 4.0,
+    "price_vs_ema200": 4.0,
+    "rsi_14": 2.0,
+    "roc_20": 2.0,
+    "volume_ratio": 1.0,
+    "pct_vs_sma50": 1.0,
+    "atr_14": 0.0,
+    "adx_14": 0.0,
+    "bb_pct_b": 0.0
+  }
+}

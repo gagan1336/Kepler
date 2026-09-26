@@ -1,0 +1,790 @@
+{
+  "picks": [
+    {
+      "symbol": "DLF.NS",
+      "ticker": "DLF",
+      "price": 655.0999755859375,
+      "win_probability": 36.0,
+      "confidence": "LOW",
+      "strategies": [
+        "rsi_oversold_bounce",
+        "golden_crossover"
+      ],
+      "best_strategy": "rsi_oversold_bounce",
+      "strategy_count": 2,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 655.1,
+        "rsi": 43.8,
+        "vol_ratio": 6.8,
+        "pct_from_52h": 15.69,
+        "pct_from_ema20": -2.45,
+        "ema20": 671.58,
+        "ema50": 656.64,
+        "ema200": 644.77,
+        "ema_aligned": false,
+        "52w_high": 776.99,
+        "52w_low": 497.85
+      },
+      "fundamentals": {
+        "roe": 10.1,
+        "pe": 36.3,
+        "rev_growth": -52.9,
+        "promoter_pct": 74.1,
+        "market_cap": 1621576515584.0,
+        "sector": "Real Estate",
+        "industry": "Real Estate - Development"
+      },
+      "fund_score": 50.0,
+      "scanned_at": "2026-09-09T23:26:38.256145"
+    },
+    {
+      "symbol": "OFSS.NS",
+      "ticker": "OFSS",
+      "price": 11630.0,
+      "win_probability": 32.0,
+      "confidence": "LOW",
+      "strategies": [
+        "ema_pullback_bounce"
+      ],
+      "best_strategy": "ema_pullback_bounce",
+      "strategy_count": 1,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 11630.0,
+        "rsi": 46.3,
+        "vol_ratio": 0.62,
+        "pct_from_52h": 7.26,
+        "pct_from_ema20": -1.9,
+        "ema20": 11855.19,
+        "ema50": 11434.98,
+        "ema200": 9657.7,
+        "ema_aligned": false,
+        "52w_high": 12540.0,
+        "52w_low": 6126.48
+      },
+      "fundamentals": {
+        "roe": 49.9,
+        "pe": 29.7,
+        "rev_growth": 68.7,
+        "promoter_pct": 72.5,
+        "market_cap": 1012776763392.0,
+        "sector": "Technology",
+        "industry": "Software - Infrastructure"
+      },
+      "fund_score": 100.0,
+      "scanned_at": "2026-09-09T23:26:43.272589"
+    },
+    {
+      "symbol": "COFORGE.NS",
+      "ticker": "COFORGE",
+      "price": 1845.0,
+      "win_probability": 31.6,
+      "confidence": "LOW",
+      "strategies": [
+        "volume_surge",
+        "golden_crossover"
+      ],
+      "best_strategy": "volume_surge",
+      "strategy_count": 2,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 1845.0,
+        "rsi": 48.7,
+        "vol_ratio": 5.27,
+        "pct_from_52h": 8.42,
+        "pct_from_ema20": -2.34,
+        "ema20": 1889.21,
+        "ema50": 1754.51,
+        "ema200": 1569.96,
+        "ema_aligned": false,
+        "52w_high": 2014.6,
+        "52w_low": 1068.95
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 37.8,
+        "rev_growth": 49.9,
+        "promoter_pct": 21.8,
+        "market_cap": 817294540800.0,
+        "sector": "Technology",
+        "industry": "Information Technology Services"
+      },
+      "fund_score": 45.0,
+      "scanned_at": "2026-09-09T23:26:44.591073"
+    },
+    {
+      "symbol": "CHOLAFIN.NS",
+      "ticker": "CHOLAFIN",
+      "price": 1829.0,
+      "win_probability": 30.0,
+      "confidence": "LOW",
+      "strategies": [
+        "ema_pullback_bounce"
+      ],
+      "best_strategy": "ema_pullback_bounce",
+      "strategy_count": 1,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 1829.0,
+        "rsi": 46.7,
+        "vol_ratio": 1.07,
+        "pct_from_52h": 5.72,
+        "pct_from_ema20": -1.07,
+        "ema20": 1848.8,
+        "ema50": 1815.08,
+        "ema200": 1691.94,
+        "ema_aligned": false,
+        "52w_high": 1940.0,
+        "52w_low": 1354.17
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 27.0,
+        "rev_growth": 34.6,
+        "promoter_pct": 52.0,
+        "market_cap": 1562086735872.0,
+        "sector": "Financial Services",
+        "industry": "Credit Services"
+      },
+      "fund_score": 75.0,
+      "scanned_at": "2026-09-09T23:26:34.917395"
+    },
+    {
+      "symbol": "ZYDUSLIFE.NS",
+      "ticker": "ZYDUSLIFE",
+      "price": 1127.4000244140625,
+      "win_probability": 30.0,
+      "confidence": "LOW",
+      "strategies": [
+        "ema_pullback_bounce"
+      ],
+      "best_strategy": "ema_pullback_bounce",
+      "strategy_count": 1,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 1127.4,
+        "rsi": 47.2,
+        "vol_ratio": 0.77,
+        "pct_from_52h": 6.44,
+        "pct_from_ema20": -1.32,
+        "ema20": 1142.49,
+        "ema50": 1126.31,
+        "ema200": 1037.41,
+        "ema_aligned": false,
+        "52w_high": 1205.0,
+        "52w_low": 859.83
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 25.1,
+        "rev_growth": 22.0,
+        "promoter_pct": 75.2,
+        "market_cap": 1124585832448.0,
+        "sector": "Healthcare",
+        "industry": "Drug Manufacturers - Specialty & Generic"
+      },
+      "fund_score": 75.0,
+      "scanned_at": "2026-09-09T23:26:41.879540"
+    },
+    {
+      "symbol": "NAUKRI.NS",
+      "ticker": "NAUKRI",
+      "price": 1267.0,
+      "win_probability": 28.4,
+      "confidence": "LOW",
+      "strategies": [
+        "rsi_oversold_bounce",
+        "vcp_tight",
+        "golden_crossover"
+      ],
+      "best_strategy": "rsi_oversold_bounce",
+      "strategy_count": 3,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 1267.0,
+        "rsi": 43.1,
+        "vol_ratio": 0.97,
+        "pct_from_52h": 10.0,
+        "pct_from_ema20": -3.44,
+        "ema20": 1312.14,
+        "ema50": 1251.06,
+        "ema200": 1175.66,
+        "ema_aligned": false,
+        "52w_high": 1407.76,
+        "52w_low": 923.1
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 51.3,
+        "rev_growth": 11.4,
+        "promoter_pct": 47.0,
+        "market_cap": 820683538432.0,
+        "sector": "Communication Services",
+        "industry": "Internet Content & Information"
+      },
+      "fund_score": 55.0,
+      "scanned_at": "2026-09-09T23:26:55.543067"
+    },
+    {
+      "symbol": "TORNTPHARM.NS",
+      "ticker": "TORNTPHARM",
+      "price": 4930.0,
+      "win_probability": 28.4,
+      "confidence": "LOW",
+      "strategies": [
+        "near_52w_high",
+        "ema_pullback_bounce"
+      ],
+      "best_strategy": "near_52w_high",
+      "strategy_count": 2,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 4930.0,
+        "rsi": 49.6,
+        "vol_ratio": 0.54,
+        "pct_from_52h": 3.76,
+        "pct_from_ema20": -0.28,
+        "ema20": 4943.83,
+        "ema50": 4874.75,
+        "ema200": 4432.05,
+        "ema_aligned": false,
+        "52w_high": 5122.8,
+        "52w_low": 3483.84
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 78.9,
+        "rev_growth": 54.8,
+        "promoter_pct": 63.4,
+        "market_cap": 1875213549568.0,
+        "sector": "Healthcare",
+        "industry": "Drug Manufacturers - Specialty & Generic"
+      },
+      "fund_score": 55.0,
+      "scanned_at": "2026-09-09T23:26:41.250236"
+    },
+    {
+      "symbol": "PERSISTENT.NS",
+      "ticker": "PERSISTENT",
+      "price": 5419.0,
+      "win_probability": 28.0,
+      "confidence": "LOW",
+      "strategies": [
+        "rsi_oversold_bounce",
+        "golden_crossover"
+      ],
+      "best_strategy": "rsi_oversold_bounce",
+      "strategy_count": 2,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 5419.0,
+        "rsi": 44.7,
+        "vol_ratio": 1.15,
+        "pct_from_52h": 16.85,
+        "pct_from_ema20": -2.85,
+        "ema20": 5578.02,
+        "ema50": 5417.98,
+        "ema200": 5305.75,
+        "ema_aligned": false,
+        "52w_high": 6517.4,
+        "52w_low": 4283.62
+      },
+      "fundamentals": {
+        "roe": 25.2,
+        "pe": 44.3,
+        "rev_growth": 29.1,
+        "promoter_pct": 33.2,
+        "market_cap": 846616002560.0,
+        "sector": "Technology",
+        "industry": "Information Technology Services"
+      },
+      "fund_score": 50.0,
+      "scanned_at": "2026-09-09T23:26:43.952132"
+    },
+    {
+      "symbol": "PETRONET.NS",
+      "ticker": "PETRONET",
+      "price": 285.8999938964844,
+      "win_probability": 28.0,
+      "confidence": "LOW",
+      "strategies": [
+        "ema_pullback_bounce"
+      ],
+      "best_strategy": "ema_pullback_bounce",
+      "strategy_count": 1,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 285.9,
+        "rsi": 48.7,
+        "vol_ratio": 0.68,
+        "pct_from_52h": 10.58,
+        "pct_from_ema20": -0.71,
+        "ema20": 287.94,
+        "ema50": 283.84,
+        "ema200": 277.32,
+        "ema_aligned": false,
+        "52w_high": 319.71,
+        "52w_low": 235.34
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 10.2,
+        "rev_growth": -53.2,
+        "promoter_pct": 50.2,
+        "market_cap": 428850020352.0,
+        "sector": "Energy",
+        "industry": "Oil & Gas Refining & Marketing"
+      },
+      "fund_score": 50.0,
+      "scanned_at": "2026-09-09T23:26:50.748016"
+    },
+    {
+      "symbol": "ABB.NS",
+      "ticker": "ABB",
+      "price": 7401.5,
+      "win_probability": 27.7,
+      "confidence": "LOW",
+      "strategies": [
+        "near_52w_high",
+        "ema_pullback_bounce"
+      ],
+      "best_strategy": "near_52w_high",
+      "strategy_count": 2,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 7401.5,
+        "rsi": 47.1,
+        "vol_ratio": 1.74,
+        "pct_from_52h": 4.0,
+        "pct_from_ema20": -0.91,
+        "ema20": 7469.83,
+        "ema50": 7348.74,
+        "ema200": 6558.92,
+        "ema_aligned": false,
+        "52w_high": 7710.0,
+        "52w_low": 4618.03
+      },
+      "fundamentals": {
+        "roe": 19.1,
+        "pe": 99.2,
+        "rev_growth": 12.1,
+        "promoter_pct": 76.3,
+        "market_cap": 1568439795712.0,
+        "sector": "Industrials",
+        "industry": "Specialty Industrial Machinery"
+      },
+      "fund_score": 80.0,
+      "scanned_at": "2026-09-09T23:26:53.567579"
+    },
+    {
+      "symbol": "FEDERALBNK.NS",
+      "ticker": "FEDERALBNK",
+      "price": 345.0,
+      "win_probability": 27.6,
+      "confidence": "LOW",
+      "strategies": [
+        "ema_pullback_bounce"
+      ],
+      "best_strategy": "ema_pullback_bounce",
+      "strategy_count": 1,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 345.0,
+        "rsi": 46.6,
+        "vol_ratio": 0.78,
+        "pct_from_52h": 6.87,
+        "pct_from_ema20": -1.02,
+        "ema20": 348.56,
+        "ema50": 343.12,
+        "ema200": 300.54,
+        "ema_aligned": false,
+        "52w_high": 370.43,
+        "52w_low": 189.43
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 18.5,
+        "rev_growth": 21.4,
+        "promoter_pct": 10.9,
+        "market_cap": 852175421440.0,
+        "sector": "Financial Services",
+        "industry": "Banks - Regional"
+      },
+      "fund_score": 45.0,
+      "scanned_at": "2026-09-09T23:26:36.583072"
+    },
+    {
+      "symbol": "SOLARINDS.NS",
+      "ticker": "SOLARINDS",
+      "price": 22355.0,
+      "win_probability": 26.6,
+      "confidence": "LOW",
+      "strategies": [
+        "near_52w_high",
+        "momentum_leaders",
+        "rsi_momentum",
+        "high_rs",
+        "accumulation_zone"
+      ],
+      "best_strategy": "near_52w_high",
+      "strategy_count": 5,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 22355.0,
+        "rsi": 75.6,
+        "vol_ratio": 0.52,
+        "pct_from_52h": 0.45,
+        "pct_from_ema20": 8.21,
+        "ema20": 20658.27,
+        "ema50": 19541.09,
+        "ema200": 16877.11,
+        "ema_aligned": true,
+        "52w_high": 22455.0,
+        "52w_low": 11765.05
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 101.6,
+        "rev_growth": 70.3,
+        "promoter_pct": 43.9,
+        "market_cap": 2022905217024.0,
+        "sector": "Basic Materials",
+        "industry": "Specialty Chemicals"
+      },
+      "fund_score": 55.0,
+      "scanned_at": "2026-09-09T23:26:46.025578"
+    },
+    {
+      "symbol": "COALINDIA.NS",
+      "ticker": "COALINDIA",
+      "price": 431.0,
+      "win_probability": 26.4,
+      "confidence": "LOW",
+      "strategies": [
+        "rsi_momentum",
+        "golden_crossover",
+        "stage2_base_breakout"
+      ],
+      "best_strategy": "rsi_momentum",
+      "strategy_count": 3,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 431.0,
+        "rsi": 74.1,
+        "vol_ratio": 1.67,
+        "pct_from_52h": 8.17,
+        "pct_from_ema20": 5.17,
+        "ema20": 409.79,
+        "ema50": 413.07,
+        "ema200": 412.92,
+        "ema_aligned": false,
+        "52w_high": 469.36,
+        "52w_low": 355.9
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 8.5,
+        "rev_growth": 45.1,
+        "promoter_pct": 61.1,
+        "market_cap": 2656136069120.0,
+        "sector": "Energy",
+        "industry": "Thermal Coal"
+      },
+      "fund_score": 75.0,
+      "scanned_at": "2026-09-09T23:26:24.003398"
+    },
+    {
+      "symbol": "CDSL.NS",
+      "ticker": "CDSL",
+      "price": 1368.5999755859375,
+      "win_probability": 26.0,
+      "confidence": "LOW",
+      "strategies": [
+        "golden_crossover",
+        "ema_pullback_bounce"
+      ],
+      "best_strategy": "golden_crossover",
+      "strategy_count": 2,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 1368.6,
+        "rsi": 48.9,
+        "vol_ratio": 0.99,
+        "pct_from_52h": 16.57,
+        "pct_from_ema20": -0.77,
+        "ema20": 1379.18,
+        "ema50": 1354.83,
+        "ema200": 1353.55,
+        "ema_aligned": false,
+        "52w_high": 1640.34,
+        "52w_low": 1109.28
+      },
+      "fundamentals": {
+        "roe": 23.9,
+        "pe": 60.7,
+        "rev_growth": 4.2,
+        "promoter_pct": null,
+        "market_cap": 286037409792.0,
+        "sector": "Financial Services",
+        "industry": "Capital Markets"
+      },
+      "fund_score": 25.0,
+      "scanned_at": "2026-09-09T23:26:58.158744"
+    },
+    {
+      "symbol": "BAJFINANCE.NS",
+      "ticker": "BAJFINANCE",
+      "price": 1039.300048828125,
+      "win_probability": 25.4,
+      "confidence": "LOW",
+      "strategies": [
+        "rsi_oversold_bounce"
+      ],
+      "best_strategy": "rsi_oversold_bounce",
+      "strategy_count": 1,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 1039.3,
+        "rsi": 39.0,
+        "vol_ratio": 1.82,
+        "pct_from_52h": 10.31,
+        "pct_from_ema20": -2.63,
+        "ema20": 1067.37,
+        "ema50": 1052.81,
+        "ema200": 986.48,
+        "ema_aligned": false,
+        "52w_high": 1158.8,
+        "52w_low": 796.65
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 31.9,
+        "rev_growth": 26.1,
+        "promoter_pct": 56.5,
+        "market_cap": 6465395359744.0,
+        "sector": "Financial Services",
+        "industry": "Credit Services"
+      },
+      "fund_score": 75.0,
+      "scanned_at": "2026-09-09T23:26:21.252115"
+    },
+    {
+      "symbol": "HAL.NS",
+      "ticker": "HAL",
+      "price": 5000.5,
+      "win_probability": 24.7,
+      "confidence": "LOW",
+      "strategies": [
+        "near_52w_high",
+        "momentum_leaders"
+      ],
+      "best_strategy": "near_52w_high",
+      "strategy_count": 2,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 5000.5,
+        "rsi": 61.7,
+        "vol_ratio": 2.12,
+        "pct_from_52h": 1.93,
+        "pct_from_ema20": 2.57,
+        "ema20": 4875.12,
+        "ema50": 4741.99,
+        "ema200": 4480.32,
+        "ema_aligned": true,
+        "52w_high": 5099.0,
+        "52w_low": 3480.15
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 35.9,
+        "rev_growth": 14.4,
+        "promoter_pct": 71.6,
+        "market_cap": 3344209281024.0,
+        "sector": "Industrials",
+        "industry": "Aerospace & Defense"
+      },
+      "fund_score": 75.0,
+      "scanned_at": "2026-09-09T23:26:37.600481"
+    },
+    {
+      "symbol": "DIVISLAB.NS",
+      "ticker": "DIVISLAB",
+      "price": 9488.0,
+      "win_probability": 24.5,
+      "confidence": "LOW",
+      "strategies": [
+        "near_52w_high",
+        "momentum_leaders",
+        "rsi_momentum"
+      ],
+      "best_strategy": "near_52w_high",
+      "strategy_count": 3,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 9488.0,
+        "rsi": 70.1,
+        "vol_ratio": 0.68,
+        "pct_from_52h": 0.91,
+        "pct_from_ema20": 5.75,
+        "ema20": 8971.94,
+        "ema50": 8287.39,
+        "ema200": 7086.85,
+        "ema_aligned": true,
+        "52w_high": 9575.0,
+        "52w_low": 5666.13
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 86.2,
+        "rev_growth": 27.8,
+        "promoter_pct": 52.0,
+        "market_cap": 2518765797376.0,
+        "sector": "Healthcare",
+        "industry": "Drug Manufacturers - Specialty & Generic"
+      },
+      "fund_score": 55.0,
+      "scanned_at": "2026-09-09T23:26:29.174969"
+    },
+    {
+      "symbol": "INDUSINDBK.NS",
+      "ticker": "INDUSINDBK",
+      "price": 1004.0,
+      "win_probability": 24.0,
+      "confidence": "LOW",
+      "strategies": [
+        "ema_pullback_bounce",
+        "accumulation_zone"
+      ],
+      "best_strategy": "ema_pullback_bounce",
+      "strategy_count": 2,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 1004.0,
+        "rsi": 49.8,
+        "vol_ratio": 0.67,
+        "pct_from_52h": 6.11,
+        "pct_from_ema20": -0.06,
+        "ema20": 1004.58,
+        "ema50": 995.19,
+        "ema200": 922.72,
+        "ema_aligned": false,
+        "52w_high": 1069.3,
+        "52w_low": 711.6
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 59.2,
+        "rev_growth": 1.0,
+        "promoter_pct": 16.3,
+        "market_cap": 782257094656.0,
+        "sector": "Financial Services",
+        "industry": "Banks - Regional"
+      },
+      "fund_score": 0.0,
+      "scanned_at": "2026-09-09T23:26:31.457926"
+    },
+    {
+      "symbol": "RAYMOND.NS",
+      "ticker": "RAYMOND",
+      "price": 808.4500122070312,
+      "win_probability": 23.3,
+      "confidence": "LOW",
+      "strategies": [
+        "breakout_52w",
+        "momentum_leaders",
+        "rsi_momentum",
+        "high_rs",
+        "accumulation_zone"
+      ],
+      "best_strategy": "breakout_52w",
+      "strategy_count": 5,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 808.45,
+        "rsi": 70.6,
+        "vol_ratio": 1.51,
+        "pct_from_52h": 5.75,
+        "pct_from_ema20": 18.15,
+        "ema20": 684.27,
+        "ema50": 635.32,
+        "ema200": 550.71,
+        "ema_aligned": true,
+        "52w_high": 857.8,
+        "52w_low": 321.85
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 122.3,
+        "rev_growth": 15.5,
+        "promoter_pct": 51.2,
+        "market_cap": 53803507712.0,
+        "sector": "Industrials",
+        "industry": "Specialty Industrial Machinery"
+      },
+      "fund_score": 55.0,
+      "scanned_at": "2026-09-09T23:27:00.528001"
+    },
+    {
+      "symbol": "ADANIPORTS.NS",
+      "ticker": "ADANIPORTS",
+      "price": 1775.0,
+      "win_probability": 23.3,
+      "confidence": "LOW",
+      "strategies": [
+        "stage2_base_breakout"
+      ],
+      "best_strategy": "stage2_base_breakout",
+      "strategy_count": 1,
+      "expected_return": 6.5,
+      "hold_days": 20,
+      "technicals": {
+        "price": 1775.0,
+        "rsi": 60.6,
+        "vol_ratio": 1.83,
+        "pct_from_52h": 5.75,
+        "pct_from_ema20": 4.36,
+        "ema20": 1700.84,
+        "ema50": 1718.91,
+        "ema200": 1629.11,
+        "ema_aligned": false,
+        "52w_high": 1883.2,
+        "52w_low": 1298.13
+      },
+      "fundamentals": {
+        "roe": null,
+        "pe": 30.3,
+        "rev_growth": 18.6,
+        "promoter_pct": 66.1,
+        "market_cap": 4089527402496.0,
+        "sector": "Industrials",
+        "industry": "Marine Shipping"
+      },
+      "fund_score": 75.0,
+      "scanned_at": "2026-09-09T23:26:32.150221"
+    }
+  ],
+  "total_hits": 60,
+  "strategies_active": 0,
+  "scanned_at": "2026-09-09T23:27:01.188979",
+  "scan_duration_s": 49.5
+}

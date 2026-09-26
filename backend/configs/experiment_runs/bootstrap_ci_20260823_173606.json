@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-08-23T17:36:06.854302Z",
+  "holdout_file": "F:\\Stock market analysis\\backend\\configs\\frozen_holdout.yaml",
+  "n_symbols": 43,
+  "n_rows": 70285,
+  "positive_rate": 0.2558,
+  "bootstrap_ci": {
+    "point_auc": 0.5608,
+    "ci_low_pct": 0.5567,
+    "ci_high_pct": 0.5649,
+    "n_bootstrap": 1000,
+    "p_above_0_50": 1.0,
+    "signal_real": true
+  },
+  "precision_sweep": [
+    {
+      "threshold": 0.25,
+      "n_trades": 61252,
+      "precision": 0.2641,
+      "recall": 0.8997
+    },
+    {
+      "threshold": 0.3,
+      "n_trades": 52609,
+      "precision": 0.2713,
+      "recall": 0.7938
+    },
+    {
+      "threshold": 0.35,
+      "n_trades": 41414,
+      "precision": 0.2815,
+      "recall": 0.6484
+    },
+    {
+      "threshold": 0.4,
+      "n_trades": 28823,
+      "precision": 0.2958,
+      "recall": 0.4742
+    },
+    {
+      "threshold": 0.45,
+      "n_trades": 17677,
+      "precision": 0.3111,
+      "recall": 0.3058
+    },
+    {
+      "threshold": 0.5,
+      "n_trades": 10149,
+      "precision": 0.3342,
+      "recall": 0.1887
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "primary_threshold": 0.3,
+    "meta_threshold": 0.5,
+    "n_trades": 30962,
+    "freq_pct": 100.0,
+    "precision": 0.3451,
+    "recall": 0.2103
+  },
+  {
+    "primary_threshold": 0.3,
+    "meta_threshold": 0.55,
+    "n_trades": 30962,
+    "freq_pct": 100.0,
+    "precision": 0.3451,
+    "recall": 0.2103
+  },
+  {
+    "primary_threshold": 0.3,
+    "meta_threshold": 0.6,
+    "n_trades": 30962,
+    "freq_pct": 100.0,
+    "precision": 0.3451,
+    "recall": 0.2103
+  },
+  {
+    "primary_threshold": 0.3,
+    "meta_threshold": 0.65,
+    "n_trades": 30962,
+    "freq_pct": 100.0,
+    "precision": 0.3451,
+    "recall": 0.2103
+  },
+  {
+    "primary_threshold": 0.3,
+    "meta_threshold": 0.7,
+    "n_trades": 30962,
+    "freq_pct": 100.0,
+    "precision": 0.3451,
+    "recall": 0.2103
+  },
+  {
+    "primary_threshold": 0.35,
+    "meta_threshold": 0.5,
+    "n_trades": 8544,
+    "freq_pct": 27.6,
+    "precision": 0.4003,
+    "recall": 0.0673
+  },
+  {
+    "primary_threshold": 0.35,
+    "meta_threshold": 0.55,
+    "n_trades": 8544,
+    "freq_pct": 27.6,
+    "precision": 0.4003,
+    "recall": 0.0673
+  },
+  {
+    "primary_threshold": 0.35,
+    "meta_threshold": 0.6,
+    "n_trades": 8544,
+    "freq_pct": 27.6,
+    "precision": 0.4003,
+    "recall": 0.0673
+  },
+  {
+    "primary_threshold": 0.35,
+    "meta_threshold": 0.65,
+    "n_trades": 8544,
+    "freq_pct": 27.6,
+    "precision": 0.4003,
+    "recall": 0.0673
+  },
+  {
+    "primary_threshold": 0.35,
+    "meta_threshold": 0.7,
+    "n_trades": 8544,
+    "freq_pct": 27.6,
+    "precision": 0.4003,
+    "recall": 0.0673
+  },
+  {
+    "primary_threshold": 0.4,
+    "meta_threshold": 0.5,
+    "n_trades": 308,
+    "freq_pct": 0.99,
+    "precision": 0.3117,
+    "recall": 0.0019
+  },
+  {
+    "primary_threshold": 0.4,
+    "meta_threshold": 0.55,
+    "n_trades": 308,
+    "freq_pct": 0.99,
+    "precision": 0.3117,
+    "recall": 0.0019
+  },
+  {
+    "primary_threshold": 0.4,
+    "meta_threshold": 0.6,
+    "n_trades": 308,
+    "freq_pct": 0.99,
+    "precision": 0.3117,
+    "recall": 0.0019
+  },
+  {
+    "primary_threshold": 0.4,
+    "meta_threshold": 0.65,
+    "n_trades": 308,
+    "freq_pct": 0.99,
+    "precision": 0.3117,
+    "recall": 0.0019
+  },
+  {
+    "primary_threshold": 0.4,
+    "meta_threshold": 0.7,
+    "n_trades": 308,
+    "freq_pct": 0.99,
+    "precision": 0.3117,
+    "recall": 0.0019
+  }
+]

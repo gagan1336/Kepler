@@ -1,0 +1,87 @@
+{
+  "generated_at": "2026-08-24T07:47:49.499535Z",
+  "holdout_file": "F:\\Stock market analysis\\backend\\configs\\frozen_holdout.yaml",
+  "n_symbols": 43,
+  "n_rows": 70264,
+  "positive_rate": 0.2559,
+  "bootstrap_ci": {
+    "point_auc": 0.6585,
+    "ci_low_pct": 0.6547,
+    "ci_high_pct": 0.6625,
+    "n_bootstrap": 1000,
+    "p_above_0_50": 1.0,
+    "signal_real": true
+  },
+  "precision_sweep": [
+    {
+      "threshold": 0.25,
+      "n_trades": 54652,
+      "precision": 0.293,
+      "recall": 0.8907,
+      "note": ""
+    },
+    {
+      "threshold": 0.3,
+      "n_trades": 45195,
+      "precision": 0.3146,
+      "recall": 0.7908,
+      "note": ""
+    },
+    {
+      "threshold": 0.35,
+      "n_trades": 35039,
+      "precision": 0.3416,
+      "recall": 0.6657,
+      "note": ""
+    },
+    {
+      "threshold": 0.4,
+      "n_trades": 25786,
+      "precision": 0.3713,
+      "recall": 0.5325,
+      "note": ""
+    },
+    {
+      "threshold": 0.45,
+      "n_trades": 18285,
+      "precision": 0.4,
+      "recall": 0.4068,
+      "note": ""
+    },
+    {
+      "threshold": 0.5,
+      "n_trades": 12507,
+      "precision": 0.4286,
+      "recall": 0.2981,
+      "note": ""
+    },
+    {
+      "threshold": 0.55,
+      "n_trades": 8346,
+      "precision": 0.4627,
+      "recall": 0.2148,
+      "note": ""
+    },
+    {
+      "threshold": 0.6,
+      "n_trades": 5338,
+      "precision": 0.4953,
+      "recall": 0.147,
+      "note": ""
+    },
+    {
+      "threshold": 0.65,
+      "n_trades": 3326,
+      "precision": 0.5301,
+      "recall": 0.098,
+      "note": ""
+    },
+    {
+      "threshold": 0.7,
+      "n_trades": 1993,
+      "precision": 0.573,
+      "recall": 0.0635,
+      "note": ""
+    }
+  ]
+}

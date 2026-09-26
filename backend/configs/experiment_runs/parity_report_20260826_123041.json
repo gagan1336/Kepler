@@ -1,0 +1,158 @@
+{
+  "custom_file": "F:\\Stock market analysis\\backend\\configs\\experiment_runs\\expectancy_20260826_122700.json",
+  "nautilus_file": "F:\\Stock market analysis\\backend\\configs\\experiment_runs\\nautilus_backtest_20260826_123028.json",
+  "nt_mode": "fallback_python",
+  "summary_table": [
+    {
+      "metric": "Hit rate (thr=0.35)",
+      "custom": "34.1%",
+      "nautilus": "34.1%",
+      "delta": "+0.0%",
+      "flag": "\u2705"
+    },
+    {
+      "metric": "Net expectancy (thr=0.35)",
+      "custom": "+2.420%",
+      "nautilus": "+2.420%",
+      "delta": "+0.000%",
+      "flag": "\u2705"
+    },
+    {
+      "metric": "Gross expectancy (thr=0.35)",
+      "custom": "+2.813%",
+      "nautilus": "+2.813%",
+      "delta": "+0.000%",
+      "flag": "\u2705"
+    },
+    {
+      "metric": "Cost per trade (round-trip)",
+      "custom": "0.393%",
+      "nautilus": "0.393%",
+      "delta": "+0.0000%",
+      "flag": "\u2705"
+    },
+    {
+      "metric": "AUC-equivalent (sweep mean hit rate)",
+      "custom": "0.3874",
+      "nautilus": "0.3968",
+      "delta": "+0.0094",
+      "flag": "\u2705"
+    },
+    {
+      "metric": "N trades (thr=0.35)",
+      "custom": "35,084",
+      "nautilus": "35,084",
+      "delta": "+0",
+      "flag": "\u2705"
+    }
+  ],
+  "sweep_table": [
+    {
+      "threshold": 0.25,
+      "custom_hit": 0.2931,
+      "nt_hit": 0.3413,
+      "delta_hit": 0.0482,
+      "custom_net_exp": 1.405,
+      "nt_net_exp": 2.42,
+      "delta_net_exp": 1.015,
+      "custom_n": 54669,
+      "nt_n": 35084
+    },
+    {
+      "threshold": 0.3,
+      "custom_hit": 0.3146,
+      "nt_hit": 0.3413,
+      "delta_hit": 0.0267,
+      "custom_net_exp": 1.886,
+      "nt_net_exp": 2.42,
+      "delta_net_exp": 0.534,
+      "custom_n": 45227,
+      "nt_n": 35084
+    },
+    {
+      "threshold": 0.35,
+      "custom_hit": 0.3412,
+      "nt_hit": 0.3413,
+      "delta_hit": 0.0001,
+      "custom_net_exp": 2.42,
+      "nt_net_exp": 2.42,
+      "delta_net_exp": 0.0,
+      "custom_n": 35084,
+      "nt_n": 35084
+    },
+    {
+      "threshold": 0.4,
+      "custom_hit": 0.3711,
+      "nt_hit": 0.3711,
+      "delta_hit": 0.0,
+      "custom_net_exp": 3.1,
+      "nt_net_exp": 3.1,
+      "delta_net_exp": 0.0,
+      "custom_n": 25834,
+      "nt_n": 25834
+    },
+    {
+      "threshold": 0.45,
+      "custom_hit": 0.3995,
+      "nt_hit": 0.3995,
+      "delta_hit": 0.0,
+      "custom_net_exp": 3.76,
+      "nt_net_exp": 3.76,
+      "delta_net_exp": 0.0,
+      "custom_n": 18327,
+      "nt_n": 18328
+    },
+    {
+      "threshold": 0.5,
+      "custom_hit": 0.4273,
+      "nt_hit": 0.4273,
+      "delta_hit": 0.0,
+      "custom_net_exp": 4.443,
+      "nt_net_exp": 4.443,
+      "delta_net_exp": 0.0,
+      "custom_n": 12578,
+      "nt_n": 12578
+    },
+    {
+      "threshold": 0.55,
+      "custom_hit": 0.4599,
+      "nt_hit": 0.4598,
+      "delta_hit": -0.0001,
+      "custom_net_exp": 5.188,
+      "nt_net_exp": 5.188,
+      "delta_net_exp": 0.0,
+      "custom_n": 8422,
+      "nt_n": 8423
+    },
+    {
+      "threshold": 0.6,
+      "custom_hit": 0.4927,
+      "nt_hit": 0.4926,
+      "delta_hit": -0.0001,
+      "custom_net_exp": 6.105,
+      "nt_net_exp": 6.102,
+      "delta_net_exp": -0.003,
+      "custom_n": 5421,
+      "nt_n": 5420
+    }
+  ],
+  "discrepancies": {
+    "D1_n_trades_delta": {
+      "description": "Custom backtester scores all bars including overlapping windows (no position constraint). NT/fallback enforces one open position per symbol \u2014 signals during an open position are skipped. Observed delta: +0 trades at thr=0.35.",
+      "in_tolerance": true
+    },
+    "D2_fill_price_delta": {
+      "description": "Custom: fwd_ret_raw = close[i+N] / close[i] - 1. NT full mode: fills at next bar open (one-bar slippage). Fallback mode (fallback_python): uses same fwd_ret_raw as custom \u2014 no fill-price delta expected in fallback mode.",
+      "applies_to": "nautilus full mode only"
+    },
+    "D3_cost_model_delta": {
+      "description": "Custom: flat round-trip % subtracted. NT full mode: per-order Money deduction via NSEFeeModel. Fallback: identical flat % \u2014 delta should be 0. Observed cost_pct delta: +0.0000%.",
+      "in_tolerance": true
+    },
+    "D4_macro_rank_features": {
+      "description": "Both paths zero-fill macro and cross-sectional rank features. No scoring delta expected here.",
+      "in_tolerance": true
+    }
+  },
+  "parity_pass": true
+}

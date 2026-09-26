@@ -1,0 +1,15 @@
+{
+  "fold": 5,
+  "test_start": "2018-11-21",
+  "test_end": "2026-08-07",
+  "n_test": 44932,
+  "n_positive": 10246,
+  "n_negative": 34686,
+  "base_rate": 0.228,
+  "auc": 0.5961,
+  "avg_prec": 0.289,
+  "precision": 0.3554,
+  "recall": 0.0424,
+  "f1": 0.0757,
+  "n_train": 261874
+}

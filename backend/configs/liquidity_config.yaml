@@ -1,0 +1,18 @@
+# Kepler — Liquidity filter configuration
+# =========================================
+# Stocks below this average daily turnover are excluded from the
+# tradable universe at both training AND live inference time.
+# This is a hard rule, not a feature — the meta-model does not
+# get to override it.
+
+liquidity_filter:
+  # Minimum average daily turnover in ₹ crore
+  # ₹10 crore ≈ ~$1.2M USD per day — comfortably tradable
+  min_avg_daily_turnover_cr: 10
+
+  # Rolling window over which to compute average turnover
+  lookback_days: 60
+
+  # If data is unavailable for a ticker, include it anyway
+  # (don't silently drop stocks due to yfinance fetch failures)
+  fail_open: true
