@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER — Telegram Publisher
 Formats and sends morning digest to Pro and Elite channels at 8 AM IST.
 Sends admin alerts on pipeline failures.

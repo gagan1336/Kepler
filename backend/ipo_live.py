@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- IPO Intelligence Hub
 
 Primary data source: ipopremium.in (publicly accessible, no auth required)

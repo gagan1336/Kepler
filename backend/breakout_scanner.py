@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- Breakout Scanner
 Scans 250 curated NSE stocks for professional-grade breakout setups.
 

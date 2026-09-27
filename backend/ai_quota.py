@@ -1,5 +1,5 @@
 """
-ANTIGRAVITY — AI Quota Enforcement
+KEPLER -- AI Quota Enforcement
 Prevents per-user Gemini API cost abuse by tracking daily call counts.
 
 Quotas (calls per day):

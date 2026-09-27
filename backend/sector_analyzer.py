@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- Enhanced Sector Analyzer
 Runs every Tuesday + Friday. Covers 15 NSE sector indices.
 Uses Gemini 2.0 Flash for richer, more analytical sector spotlights.

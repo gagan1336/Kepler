@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- Enhanced News Collector
 Fetches news from 12+ RSS feeds, NewsAPI, GNews, and official Indian financial sources.
 Includes GST, RBI circulars, SEBI notifications, earnings calendars.

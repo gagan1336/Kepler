@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- Database Engine & Session Factory
 SQLAlchemy async setup with connection pooling for production.
 """

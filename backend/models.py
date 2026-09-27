@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- SQLAlchemy ORM Models
 SQLite-compatible (local dev) + PostgreSQL-compatible (production).
 Uses JSON instead of JSONB, String instead of PostgreSQL UUID.
@@ -185,3 +185,59 @@ class StockSignal(Base):
 
 Index("ix_stock_signals_created", StockSignal.created_at)
 Index("ix_stock_signals_symbol",  StockSignal.symbol)
+
+
+# -- AI Quota Tracking -------------------------------------------------------
+class AIQuota(Base):
+    """Per-user, per-day, per-endpoint AI call counter for Gemini quota enforcement."""
+    __tablename__ = "ai_quotas"
+
+    id           = Column(String(36), primary_key=True, default=gen_uuid)
+    user_id      = Column(String(36), ForeignKey("users.id"), nullable=False)
+    quota_date   = Column(Date, nullable=False)
+    endpoint     = Column(String(50), nullable=False)
+    call_count   = Column(Integer, nullable=False, default=0)
+    updated_at   = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    user         = relationship("User")
+
+
+Index("ix_ai_quotas_lookup", AIQuota.user_id, AIQuota.quota_date, AIQuota.endpoint)
+
+
+# -- Audit Log ---------------------------------------------------------------
+class AuditLog(Base):
+    """Append-only security event trail. Never updated, only inserted."""
+    __tablename__ = "audit_logs"
+
+    id           = Column(String(36), primary_key=True, default=gen_uuid)
+    user_id      = Column(String(36), ForeignKey("users.id"), nullable=True)
+    user_email   = Column(String(255), nullable=True)
+    event        = Column(String(100), nullable=False)
+    path         = Column(String(500), nullable=True)
+    ip_address   = Column(String(45), nullable=True)
+    details      = Column(JSON, nullable=True, default=dict)
+    success      = Column(Boolean, nullable=True)
+    created_at   = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+
+Index("ix_audit_logs_user",    AuditLog.user_id)
+Index("ix_audit_logs_event",   AuditLog.event)
+Index("ix_audit_logs_created", AuditLog.created_at)
+
+
+# -- Push Tokens -------------------------------------------------------------
+class PushToken(Base):
+    """Expo push notification tokens, one per user+device pair."""
+    __tablename__ = "push_tokens"
+
+    id         = Column(String(36), primary_key=True, default=gen_uuid)
+    user_id    = Column(String(36), ForeignKey("users.id"), nullable=False)
+    token      = Column(String(255), nullable=False, unique=True)
+    platform   = Column(String(10), nullable=True)
+    is_active  = Column(Boolean, default=True, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    user       = relationship("User")
+
+
+Index("ix_push_tokens_user", PushToken.user_id)

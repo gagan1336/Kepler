@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- Authentication
 Verifies Supabase JWTs (ES256 via JWKS), upserts users into local DB on first contact.
 """

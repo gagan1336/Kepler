@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- Picks Engine
 "High-Conviction Stock Picks" powered by multi-factor scoring.
 

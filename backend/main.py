@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER — FastAPI Main Application
 All API endpoints: auth, content, subscriptions, public, webhooks.
 Rate limiting, CORS, error handling all configured.
@@ -990,19 +990,6 @@ async def _handle_subscription_activated(db: Session, entity: dict, payload: dic
 
         logger.info(f"User {user.email} upgraded to {plan_name}")
 
-        # Add to Telegram channel
-        try:
-            from telegram_publisher import add_user_to_channel
-            channel_id = (
-                settings.telegram_elite_channel_id
-                if plan_name == "elite"
-                else settings.telegram_pro_channel_id
-            )
-            if user.telegram_id and channel_id:
-                await add_user_to_channel(user.telegram_id, channel_id)
-        except Exception as e:
-            logger.warning(f"Could not add to Telegram channel: {e}")
-
         # Trigger Day 1 email
         try:
             from email_service import send_subscription_welcome
@@ -1043,10 +1030,6 @@ async def _handle_payment_failed(db: Session, payload: dict):
         if email:
             from email_service import send_payment_failed_email
             send_payment_failed_email(email)
-
-        # Admin alert
-        from telegram_publisher import send_admin_alert
-        await send_admin_alert(f"❌ Payment failed for {email}")
     except Exception as e:
         logger.error(f"payment.failed handler error: {e}")
 
@@ -1733,21 +1716,6 @@ def admin_trigger_breakout(
     return {"message": "Breakout scanner started in background"}
 
 
-@app.post("/admin/trigger/telegram")
-def admin_trigger_telegram(
-    background_tasks: BackgroundTasks,
-    current_user: User = Depends(require_plan("elite")),
-):
-    """Manually trigger the Telegram digest publish — Elite only (admin use)."""
-    import asyncio
-
-    def _run():
-        from telegram_publisher import publish_morning_digest
-        asyncio.run(publish_morning_digest())
-
-    background_tasks.add_task(_run)
-    logger.info(f"Telegram publish manually triggered by {current_user.email}")
-    return {"message": "Telegram digest publish started in background"}
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

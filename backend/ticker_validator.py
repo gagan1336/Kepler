@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- Ticker Validator
 Cross-references AI-extracted tickers against the live Nifty 500 list.
 Fuzzy-matches common wrong extractions (e.g. TATAMOTORS → TATAMOTORS, WIPRO → WIPRO).

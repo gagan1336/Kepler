@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- AI Deep Dive Generator
 AI-powered research report engine for Indian equities.
 

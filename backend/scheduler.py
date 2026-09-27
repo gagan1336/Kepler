@@ -1,7 +1,7 @@
-﻿"""
+"""
 KEPLER -- APScheduler Job Scheduler
 All pipeline jobs wired with Asia/Kolkata timezone.
-Failure handling: log traceback + Telegram alert + 15-minute retry.
+Failure handling: log traceback + log alert + 15-minute retry.
 """
 import asyncio
 import traceback
@@ -18,12 +18,8 @@ IST = pytz.timezone("Asia/Kolkata")
 
 
 def _send_admin_alert(message: str):
-    """Fire-and-forget admin Telegram alert."""
-    try:
-        from telegram_publisher import send_admin_alert
-        asyncio.run(send_admin_alert(message))
-    except Exception as e:
-        logger.error(f"Could not send admin alert: {e}")
+    """Log admin alert. Telegram disabled -- wire to push/email when ready."""
+    logger.warning(f"[ADMIN ALERT] {message}")
 
 
 def _run_with_retry(job_name: str, job_fn, *args, **kwargs):
@@ -89,9 +85,8 @@ def job_breakout_scan():
 
 
 def job_telegram_publish():
-    """Publish morning digest to Telegram channels."""
-    from telegram_publisher import run_publish
-    run_publish()
+    """Telegram publish -- DISABLED. Re-enable when Telegram is configured."""
+    logger.info("Telegram publish skipped (Telegram not configured).")
 
 
 def job_sector_analysis():

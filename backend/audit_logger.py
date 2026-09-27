@@ -1,5 +1,5 @@
 """
-ANTIGRAVITY — Audit Logging
+KEPLER -- Audit Logging
 Append-only security event trail stored in PostgreSQL.
 
 Events are written synchronously (fast) using a fire-and-forget pattern on failure.

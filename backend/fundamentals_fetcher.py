@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- Fundamentals Fetcher
 Fetches fundamental data directly from yfinance (Yahoo Finance API).
 Replaces previous Screener.in web scraping — more reliable, no HTML parsing.

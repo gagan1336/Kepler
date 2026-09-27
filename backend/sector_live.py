@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- Sector Intelligence Hub
 
 Provides live, all-sectors data for the Sector Hub dashboard.

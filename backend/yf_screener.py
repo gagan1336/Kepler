@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- Fundamental Stock Screener
 Screens NSE stocks using parallel yfinance.Ticker.info fetches.
 

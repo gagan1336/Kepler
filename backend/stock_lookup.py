@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- Stock Lookup Module
 Powers the Stock Search feature:
   - Symbol search / autocomplete from a curated NSE index list

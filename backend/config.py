@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER — Configuration Management
 Loads all environment variables with validation via Pydantic Settings.
 """

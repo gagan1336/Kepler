@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- Backtesting Stats
 Calculates historical performance of past Breakout Watchlist entries.
 Looks up the price N days after a setup was published and determines

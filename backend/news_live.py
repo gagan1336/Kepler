@@ -1,4 +1,4 @@
-﻿"""
+"""
 KEPLER -- Live Market News Engine
 Fetches RSS from 14 curated Indian finance feeds in parallel,
 scores each article for market impact, auto-categorizes into 8 buckets,
