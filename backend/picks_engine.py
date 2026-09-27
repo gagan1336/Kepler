@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — Kepler Picks Engine
+﻿"""
+KEPLER -- Picks Engine
 "High-Conviction Stock Picks" powered by multi-factor scoring.
 
 Combines 5 signal layers:

@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — Global Markets Pulse (global_markets.py)
+﻿"""
+KEPLER -- Global Markets Pulse
 Fetches major global indices, commodities & forex in parallel using yfinance.
 Shows how overnight US / Asian moves + commodities set up Nifty for the day.
 

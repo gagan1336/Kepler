@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — Enhanced News Collector
+﻿"""
+KEPLER -- Enhanced News Collector
 Fetches news from 12+ RSS feeds, NewsAPI, GNews, and official Indian financial sources.
 Includes GST, RBI circulars, SEBI notifications, earnings calendars.
 Deduplicates by title similarity using difflib ratio > 0.85.
@@ -116,7 +116,7 @@ def collect_rss() -> List[Dict[str, Any]]:
     articles = []
     for feed_info in RSS_FEEDS:
         try:
-            feed = feedparser.parse(feed_info["url"], request_headers={"User-Agent": "Antigravity/1.0 Market Intelligence Bot"})
+            feed = feedparser.parse(feed_info["url"], request_headers={"User-Agent": "KEPLER/1.0 Market Intelligence Bot"})
             count = 0
             for entry in feed.entries[:25]:  # max 25 per feed
                 title = getattr(entry, "title", "")
@@ -140,7 +140,7 @@ def collect_official_feeds() -> List[Dict[str, Any]]:
     articles = []
     for feed_info in OFFICIAL_FEEDS:
         try:
-            feed = feedparser.parse(feed_info["url"], request_headers={"User-Agent": "Antigravity/1.0"})
+            feed = feedparser.parse(feed_info["url"], request_headers={"User-Agent": "KEPLER/1.0"})
             count = 0
             for entry in feed.entries[:15]:
                 title = getattr(entry, "title", "")
@@ -302,7 +302,7 @@ def collect_market_updates() -> List[Dict[str, Any]]:
                     "https://feeds.finance.yahoo.com/rss/2.0/headline",
                     params={"s": q, "region": "IN", "lang": "en-IN"},
                     timeout=8,
-                    headers={"User-Agent": "Antigravity/1.0"},
+                    headers={"User-Agent": "KEPLER/1.0"},
                 )
                 # If that fails, just continue gracefully
             except Exception:

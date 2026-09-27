@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — Stock Universe Module
+﻿"""
+KEPLER -- Stock Universe Module
 ====================================
 Provides a COMPLETE searchable database of all NSE-listed + popular BSE stocks.
 

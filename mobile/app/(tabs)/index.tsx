@@ -1,4 +1,4 @@
-// ANTIGRAVITY — Intelligence Screen (Tab 1)
+// KEPLER — Intelligence Screen (Tab 1)
 // The most important screen. Answers: What is happening? Why? What to investigate?
 
 import { useEffect, useState, useCallback, useRef } from 'react'
@@ -349,8 +349,8 @@ export default function IntelligenceScreen() {
         {/* ── Header ───────────────────────────────────────────── */}
         <View style={s.header}>
           <View>
-            <Text style={s.brandName}>ANTIGRAVITY</Text>
-            <Text style={s.greeting}>{greet()}</Text>
+            <Text style={s.brandName}>KEPLER</Text>
+            <Text style={s.greeting}>Your daily market intelligence</Text>
             <Text style={s.date}>{todayStr()}</Text>
           </View>
           <TouchableOpacity
@@ -423,8 +423,8 @@ export default function IntelligenceScreen() {
         {/* ── Market Signals (News) ─────────────────────────────── */}
         <View style={s.section}>
           <SectionHeader
-            title="MARKET SIGNALS"
-            action="ALL NEWS →"
+            title="MARKET INTELLIGENCE"
+            action="VIEW ALL →"
             onAction={() => router.push('/news' as any)}
           />
           {loadingNews

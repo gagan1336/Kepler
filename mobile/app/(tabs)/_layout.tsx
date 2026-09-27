@@ -1,4 +1,4 @@
-// ANTIGRAVITY — Premium Tab Navigation
+// KEPLER -- Premium Tab Navigation
 import { Tabs } from 'expo-router'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
@@ -13,7 +13,7 @@ const TAB_CFG: Record<TabName, {
 }> = {
   index:   { label: 'Intelligence', icon: 'flash-outline',      iconActive: 'flash' },
   markets: { label: 'Markets',      icon: 'bar-chart-outline',  iconActive: 'bar-chart' },
-  news:    { label: 'Discover',     icon: 'compass-outline',    iconActive: 'compass' },
+  news:    { label: 'Research',     icon: 'search-outline',     iconActive: 'search' },
   ipo:     { label: 'IPO',          icon: 'rocket-outline',     iconActive: 'rocket' },
   account: { label: 'Profile',      icon: 'person-outline',     iconActive: 'person' },
 }

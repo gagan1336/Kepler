@@ -37,6 +37,7 @@ export default function RootLayout() {
           }}
         >
           <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="onboarding" options={{ animation: 'fade', gestureEnabled: false }} />
           <Stack.Screen name="login" options={{ animation: 'slide_from_bottom' }} />
           <Stack.Screen name="register" options={{ animation: 'slide_from_bottom' }} />
           <Stack.Screen name="stock/[symbol]" options={{ animation: 'slide_from_right' }} />

@@ -1,4 +1,4 @@
-// ANTIGRAVITY — Discover Screen (News + Research)
+﻿// KEPLER -- Market News Screen
 // Tabs: News | Market Updates | Deep Dives
 
 import { useState, useCallback, useEffect } from 'react'

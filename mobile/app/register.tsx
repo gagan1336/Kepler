@@ -54,7 +54,7 @@ export default function RegisterScreen() {
           </TouchableOpacity>
 
           <View style={styles.brandRow}>
-            <Text style={styles.brandName}>⚡ ANTIGRAVITY</Text>
+            <Text style={styles.brandName}>KEPLER</Text>
           </View>
 
           <Text style={styles.title}>Create account</Text>
@@ -100,7 +100,7 @@ export default function RegisterScreen() {
 
           <View style={styles.disclaimerBox}>
             <Text style={styles.disclaimerText}>
-              By creating an account you agree that Antigravity is not SEBI registered
+              By creating an account you agree that KEPLER is not SEBI registered
               and all content is for educational purposes only.
             </Text>
           </View>

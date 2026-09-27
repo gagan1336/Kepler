@@ -1,4 +1,4 @@
-// ANTIGRAVITY — Profile Screen
+// KEPLER — Profile Screen
 // Clean account management. No payment UI in V1.
 
 import { useState, useCallback } from 'react'
@@ -211,12 +211,12 @@ export default function ProfileScreen() {
           <SettingsRow
             label="Help"
             icon="?"
-            onPress={() => Alert.alert('Help', 'Support available at support@antigravity.in')}
+            onPress={() => Alert.alert('Help', 'Support available at support@kepler.in')}
           />
           <SettingsRow
             label="Send Feedback"
             icon="✉"
-            onPress={() => Linking.openURL('mailto:support@antigravity.in?subject=Feedback').catch(() => {})}
+            onPress={() => Linking.openURL('mailto:support@kepler.in?subject=Feedback').catch(() => {})}
           />
           <SettingsRow
             label="Privacy Policy"
@@ -235,7 +235,7 @@ export default function ProfileScreen() {
         <View style={s.disclaimerBox}>
           <Text style={s.disclaimerTitle}>DISCLAIMER</Text>
           <Text style={s.disclaimerText}>
-            ANTIGRAVITY is not SEBI registered. All content is for educational and informational
+            KEPLER is not SEBI registered. All content is for educational and informational
             purposes only. Nothing on this platform constitutes investment advice, a solicitation,
             or a recommendation to buy or sell any security. Always consult a qualified financial
             advisor before making investment decisions.
@@ -251,8 +251,8 @@ export default function ProfileScreen() {
 
         {/* ── Version ────────────────────────────────────────────── */}
         <View style={s.footer}>
-          <Text style={s.brand}>ANTIGRAVITY</Text>
-          <Text style={s.version}>v1.0.0 · Intelligence for Indian Markets</Text>
+          <Text style={s.brand}>KEPLER</Text>
+          <Text style={s.version}>v1.0.0 · AI Stock Research</Text>
         </View>
       </ScrollView>
     </SafeAreaView>

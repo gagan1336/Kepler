@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — Database Engine & Session Factory
+﻿"""
+KEPLER -- Database Engine & Session Factory
 SQLAlchemy async setup with connection pooling for production.
 """
 from sqlalchemy import create_engine, event

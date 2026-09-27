@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — IPO Analyzer
+﻿"""
+KEPLER -- IPO Intelligence Analyzer
 Triggered manually when a new IPO is announced.
 Calls Gemini 1.5 Pro for a neutral 350-400 word analysis brief.
 """

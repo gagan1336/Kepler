@@ -1,4 +1,4 @@
-// ANTIGRAVITY — Reusable UI Primitives
+﻿// KEPLER -- Reusable UI Primitives
 // Skeleton, Section headers, Market rows, Badges, Empty/Error states
 
 import React, { useEffect, useRef } from 'react'

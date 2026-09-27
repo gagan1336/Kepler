@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — APScheduler Job Scheduler
+﻿"""
+KEPLER -- APScheduler Job Scheduler
 All pipeline jobs wired with Asia/Kolkata timezone.
 Failure handling: log traceback + Telegram alert + 15-minute retry.
 """

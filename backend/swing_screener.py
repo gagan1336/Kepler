@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — Swing Trading Technical Screener
+﻿"""
+KEPLER -- Swing Trading Technical Screener
 Inspired by ChartInk screener patterns for NSE stocks.
 
 Computes all indicators from yfinance OHLCV data locally:

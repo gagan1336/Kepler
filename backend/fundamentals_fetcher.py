@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — Fundamentals Fetcher (yfinance-powered)
+﻿"""
+KEPLER -- Fundamentals Fetcher
 Fetches fundamental data directly from yfinance (Yahoo Finance API).
 Replaces previous Screener.in web scraping — more reliable, no HTML parsing.
 24-hour in-memory cache to avoid excessive API calls.

@@ -1,21 +1,26 @@
 {
   "expo": {
-    "name": "Antigravity",
-    "slug": "antigravity",
+    "name": "KEPLER",
+    "slug": "kepler-stock-research",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
-    "scheme": "antigravity",
+    "scheme": "kepler",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#09090B"
+    },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "in.antigravity.app",
+      "bundleIdentifier": "in.kepler.app",
       "infoPlist": {
         "NSUserTrackingUsageDescription": "This identifier will be used to deliver personalized ads to you."
       }
     },
     "android": {
-      "package": "in.antigravity.app",
+      "package": "in.kepler.app",
       "adaptiveIcon": {
         "backgroundColor": "#09090B",
         "foregroundImage": "./assets/android-icon-foreground.png"

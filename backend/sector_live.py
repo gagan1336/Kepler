@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — Sector Intelligence Hub (sector_live.py)
+﻿"""
+KEPLER -- Sector Intelligence Hub
 
 Provides live, all-sectors data for the Sector Hub dashboard.
 Thinking like a swing trader + investor — covers everything that moves sectors:

@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — Configuration Management
+﻿"""
+KEPLER — Configuration Management
 Loads all environment variables with validation via Pydantic Settings.
 """
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -21,7 +21,7 @@ class Settings(BaseSettings):
 
     # ── DATABASE ─────────────────────────────────────────────────────────────
     database_url: str = Field(
-        default="postgresql://postgres:postgres@localhost:5432/antigravity",
+        default="postgresql://postgres:postgres@localhost:5432/kepler",
         description="PostgreSQL connection URL",
     )
 
@@ -51,8 +51,8 @@ class Settings(BaseSettings):
 
     # ── EMAIL ─────────────────────────────────────────────────────────────────
     resend_api_key: str = Field(default="", description="Resend API key")
-    resend_from_email: str = Field(default="digest@antigravity.in")
-    resend_from_name: str = Field(default="Antigravity")
+    resend_from_email: str = Field(default="digest@kepler.in")
+    resend_from_name: str = Field(default="KEPLER")
 
     # ── GOOGLE OAUTH ──────────────────────────────────────────────────────────
     google_client_id: str = Field(default="")

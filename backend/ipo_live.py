@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — IPO Intelligence Hub (ipo_live.py)
+﻿"""
+KEPLER -- IPO Intelligence Hub
 
 Primary data source: ipopremium.in (publicly accessible, no auth required)
   → Provides: IPO calendar, GMP, price band, dates, lot size, issue size

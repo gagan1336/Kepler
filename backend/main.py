@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — FastAPI Main Application
+﻿"""
+KEPLER — FastAPI Main Application
 All API endpoints: auth, content, subscriptions, public, webhooks.
 Rate limiting, CORS, error handling all configured.
 """
@@ -46,7 +46,7 @@ from auth import (
 limiter = Limiter(key_func=get_remote_address)
 
 app = FastAPI(
-    title="Antigravity API",
+    title="KEPLER API",
     description="AI-powered market intelligence platform for Indian traders",
     version="1.0.0",
     docs_url="/docs" if not settings.is_production else None,
@@ -190,7 +190,7 @@ class IPOCreateRequest(BaseModel):
 
 @app.on_event("startup")
 async def startup_event():
-    logger.info("🚀 Antigravity API starting up...")
+    logger.info("🚀 KEPLER API starting up...")
     try:
         init_db()
         logger.info("✅ Database connected")
@@ -212,7 +212,7 @@ async def startup_event():
 
 @app.on_event("shutdown")
 async def shutdown_event():
-    logger.info("🛑 Antigravity API shutting down...")
+    logger.info("🛑 KEPLER API shutting down...")
     try:
         from scheduler import stop_scheduler
         stop_scheduler()
@@ -223,10 +223,10 @@ async def shutdown_event():
 async def create_razorpay_plans():
     """Create the 4 subscription plans on Razorpay if they don't exist."""
     plans_config = [
-        {"key": "pro_monthly",    "name": "Antigravity Pro Monthly",   "amount": 79900,  "period": "monthly",  "interval": 1},
-        {"key": "pro_annual",     "name": "Antigravity Pro Annual",    "amount": 749900, "period": "yearly",   "interval": 1},
-        {"key": "elite_monthly",  "name": "Antigravity Elite Monthly", "amount": 199900, "period": "monthly",  "interval": 1},
-        {"key": "elite_annual",   "name": "Antigravity Elite Annual",  "amount": 1799900,"period": "yearly",   "interval": 1},
+        {"key": "pro_monthly",    "name": "KEPLER Pro Monthly",   "amount": 79900,  "period": "monthly",  "interval": 1},
+        {"key": "pro_annual",     "name": "KEPLER Pro Annual",    "amount": 749900, "period": "yearly",   "interval": 1},
+        {"key": "elite_monthly",  "name": "KEPLER Elite Monthly", "amount": 199900, "period": "monthly",  "interval": 1},
+        {"key": "elite_annual",   "name": "KEPLER Elite Annual",  "amount": 1799900,"period": "yearly",   "interval": 1},
     ]
     for plan in plans_config:
         try:
@@ -1510,7 +1510,7 @@ def screener_quality(
     current_user: User = Depends(require_plan("pro")),
 ):
     """
-    Antigravity Quality Compounders screen — Pro/Elite only.
+    KEPLER Quality Compounders screen — Pro/Elite only.
     ROE > 15%, D/E < 1.0, PE < 50, positive growth. Sorted by ROE.
     """
     try:

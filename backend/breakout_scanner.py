@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — Breakout Scanner v2 (APEX Edition)
+﻿"""
+KEPLER -- Breakout Scanner
 Scans 250 curated NSE stocks for professional-grade breakout setups.
 
 APEX Score™ Framework (0–100) — inspired by how India's legendary traders think:

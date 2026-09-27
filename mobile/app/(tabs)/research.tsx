@@ -1,4 +1,4 @@
-// ANTIGRAVITY — Screener Screen (Research Tab)
+﻿// KEPLER -- Indian Stock Screener Screen
 // Preset screeners + Search. Connects to existing 2,600+ stock backend.
 
 import { useState, useCallback, useEffect, useRef } from 'react'

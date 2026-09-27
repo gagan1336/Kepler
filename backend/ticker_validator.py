@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — Ticker Validator
+﻿"""
+KEPLER -- Ticker Validator
 Cross-references AI-extracted tickers against the live Nifty 500 list.
 Fuzzy-matches common wrong extractions (e.g. TATAMOTORS → TATAMOTORS, WIPRO → WIPRO).
 Falls back to hardcoded set if NSE fetch fails.

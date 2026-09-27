@@ -1,5 +1,5 @@
 """
-ANTIGRAVITY — Email Service
+KEPLER — Email Service
 All email sequences via Resend API:
   Day 1 welcome, Day 2, Day 3, Day 5, Day 7, Monthly summary, Cancellation.
 Also: payment failed alert.
@@ -41,7 +41,7 @@ def _base_template(content: str, preheader: str = "") -> str:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antigravity</title>
+<title>KEPLER</title>
 <style>
   body {{ margin:0; padding:0; background:#0a0a0a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }}
   .container {{ max-width:600px; margin:0 auto; background:#111; border-radius:12px; overflow:hidden; }}
@@ -59,18 +59,18 @@ def _base_template(content: str, preheader: str = "") -> str:
 <body>
 <div class="container">
   <div class="header">
-    <div class="logo">ANTIGRAVITY</div>
+    <div class="logo">KEPLER</div>
   </div>
   <div class="body">
     {content}
     <div class="disclaimer">
-      Antigravity provides market analysis and educational content only. We are not SEBI registered investment advisers.
+      KEPLER provides market intelligence and educational content only. We are not SEBI registered investment advisers.
       This is not investment advice. Please do your own research before making any investment decisions.
     </div>
   </div>
   <div class="footer">
-    <p>You're receiving this because you signed up for Antigravity.</p>
-    <p>© {datetime.now().year} Antigravity. All rights reserved.</p>
+    <p>You're receiving this because you signed up for KEPLER.</p>
+    <p>© {datetime.now().year} KEPLER. All rights reserved.</p>
     <p>To unsubscribe, <a href="#" style="color:#555">click here</a>.</p>
   </div>
 </div>
@@ -82,7 +82,7 @@ def _base_template(content: str, preheader: str = "") -> str:
 # ── Day 1: Welcome ────────────────────────────────────────────────────────────
 def send_welcome_email(to_email: str) -> bool:
     content = """
-<h2>Welcome to Antigravity 👋</h2>
+<h2>Welcome to KEPLER 👋</h2>
 <p>Your free 7-day trial has started. Here's what to expect:</p>
 <p><strong>Every weekday at 8 AM IST</strong>, you'll receive an AI-curated morning digest — filtered, summarised, and scored for importance. No noise. No tips. Just clean research.</p>
 <p><strong>What you have access to:</strong></p>
@@ -91,17 +91,17 @@ def send_welcome_email(to_email: str) -> bool:
   <li>🏭 Latest sector report (free for all users)</li>
   <li>📊 Latest IPO brief (free for all users)</li>
 </ul>
-<p><strong>What Antigravity is not:</strong></p>
+<p><strong>What KEPLER is not:</strong></p>
 <ul>
   <li>❌ Not a tip service</li>
   <li>❌ Not SEBI registered advice</li>
   <li>❌ Not a stock recommendation service</li>
 </ul>
 <p>We help you understand markets better — what you do with that understanding is entirely your decision.</p>
-<a href="https://antigravity.in/dashboard" class="cta">Go to Your Dashboard →</a>
+<a href="https://kepler.in/dashboard" class="cta">Go to Your Dashboard →</a>
 <p style="color:#555; font-size:13px">Questions? Just reply to this email. I read every reply.</p>
 """
-    return _send(to_email, "Welcome to Antigravity — here's how to get started", _base_template(content))
+    return _send(to_email, "Welcome to KEPLER — here's how to get started", _base_template(content))
 
 
 def send_subscription_welcome(to_email: str, plan: str) -> bool:
@@ -123,9 +123,9 @@ def send_subscription_welcome(to_email: str, plan: str) -> bool:
   <li>Check the breakout watchlist for technically interesting setups</li>
   <li>Read the sector report every Tuesday</li>
 </ol>
-<a href="https://antigravity.in/dashboard" class="cta">Open Your Dashboard →</a>
+<a href="https://kepler.in/dashboard" class="cta">Open Your Dashboard →</a>
 """
-    return _send(to_email, f"Your Antigravity {plan_title} is active", _base_template(content))
+    return _send(to_email, f"Your KEPLER {plan_title} is active", _base_template(content))
 
 
 # ── Day 2 ─────────────────────────────────────────────────────────────────────
@@ -139,7 +139,7 @@ How the RBI rate pause is affecting private banks, PSU banks, and NBFCs differen
 Why deal announcements don't always translate to revenue, and which numbers to track instead.</p>
 <p><strong>3. How to Use the Breakout Watchlist</strong><br>
 A quick guide to what the technical criteria actually mean, and how to do your own research from there.</p>
-<a href="https://antigravity.in/sample" class="cta">Read Sample Reports →</a>
+<a href="https://kepler.in/sample" class="cta">Read Sample Reports →</a>
 """
     return _send(to_email, "Our 3 best reports — read these first", _base_template(content))
 
@@ -147,7 +147,7 @@ A quick guide to what the technical criteria actually mean, and how to do your o
 # ── Day 3 ─────────────────────────────────────────────────────────────────────
 def send_day3_email(to_email: str) -> bool:
     content = """
-<h2>How Pro members use Antigravity in 10 minutes each morning</h2>
+<h2>How Pro members use KEPLER in 10 minutes each morning</h2>
 <p>This is the exact routine most of our Pro members follow:</p>
 <p><strong>8:00 AM — Morning digest arrives in Telegram</strong><br>
 Scan the headlines. Read the 2-3 items relevant to your portfolio or watchlist. Takes 3 minutes.</p>
@@ -156,20 +156,20 @@ Look for setups that match stocks you were already watching. Don't act on setups
 <p><strong>Tuesdays at 8:00 AM — Sector report</strong><br>
 Read the full sector report. It provides the macro context that makes individual stock moves make sense.</p>
 <p>That's it. 10 minutes. You're better informed than 95% of retail traders who spend hours consuming noise.</p>
-<a href="https://antigravity.in/dashboard" class="cta">Open Dashboard →</a>
+<a href="https://kepler.in/dashboard" class="cta">Open Dashboard →</a>
 """
-    return _send(to_email, "How Pro members use Antigravity in 10 minutes each morning", _base_template(content))
+    return _send(to_email, "How Pro members use KEPLER in 10 minutes each morning", _base_template(content))
 
 
 # ── Day 5 ─────────────────────────────────────────────────────────────────────
 def send_day5_email(to_email: str) -> bool:
     content = """
 <h2>How's your first week going?</h2>
-<p>You've had access to Antigravity for five days now.</p>
+<p>You've had access to KEPLER for five days now.</p>
 <p>I'm curious — is the morning digest format working for you? Too long, too short? Is there something you expected to see that you're not finding?</p>
 <p>Reply to this email. I read every reply personally, and your feedback directly shapes what we build next.</p>
 <p>If everything is going well — great. I just wanted to check in.</p>
-<p style="color:#888; font-size:13px">— Antigravity Team</p>
+<p style="color:#888; font-size:13px">— KEPLER Team</p>
 """
     return _send(to_email, "How's your first week going?", _base_template(content))
 
@@ -177,7 +177,7 @@ def send_day5_email(to_email: str) -> bool:
 # ── Day 7 ─────────────────────────────────────────────────────────────────────
 def send_day7_email(to_email: str, digest_count: int = 5, chart_count: int = 5) -> bool:
     content = f"""
-<h2>Your first week on Antigravity</h2>
+<h2>Your first week on KEPLER</h2>
 <p>Here's what you received in your first seven days:</p>
 <ul>
   <li>📰 <strong>{digest_count} morning digests</strong> — AI-filtered, scored, and summarised</li>
@@ -186,26 +186,26 @@ def send_day7_email(to_email: str, digest_count: int = 5, chart_count: int = 5) 
 </ul>
 <p>Your trial continues. Everything keeps running exactly as it has been.</p>
 <p>If you're finding this useful, the Pro plan is ₹799/month — less than a single brokerage consultation.</p>
-<a href="https://antigravity.in/pricing" class="cta">View Pricing →</a>
+<a href="https://kepler.in/pricing" class="cta">View Pricing →</a>
 <p style="color:#555; font-size:13px">No pressure. Your free access continues regardless.</p>
 """
-    return _send(to_email, "Your first week on Antigravity", _base_template(content))
+    return _send(to_email, "Your first week on KEPLER", _base_template(content))
 
 
 # ── Monthly summary ───────────────────────────────────────────────────────────
 def send_monthly_summary(to_email: str, month: str, digest_count: int, chart_count: int, sector_count: int) -> bool:
     content = f"""
-<h2>Your Antigravity summary — {month}</h2>
+<h2>Your KEPLER summary — {month}</h2>
 <p>Here's what you received this month:</p>
 <ul>
   <li>📰 <strong>{digest_count} morning digests</strong></li>
   <li>📊 <strong>{chart_count} chart analyses</strong> from the breakout scanner</li>
   <li>🏭 <strong>{sector_count} sector reports</strong></li>
 </ul>
-<p>Thank you for being part of Antigravity. The platform is only useful if it actually helps you make better-informed decisions — and the best way to tell us is to reply to this email.</p>
-<a href="https://antigravity.in/dashboard" class="cta">Open Dashboard →</a>
+<p>Thank you for being part of KEPLER. The platform is only useful if it actually helps you make better-informed decisions — and the best way to tell us is to reply to this email.</p>
+<a href="https://kepler.in/dashboard" class="cta">Open Dashboard →</a>
 """
-    return _send(to_email, f"Your Antigravity summary — {month}", _base_template(content))
+    return _send(to_email, f"Your KEPLER summary — {month}", _base_template(content))
 
 
 # ── Cancellation ──────────────────────────────────────────────────────────────
@@ -233,7 +233,7 @@ def send_payment_failed_email(to_email: str) -> bool:
   <li>Update your payment method</li>
   <li>Your subscription will renew automatically</li>
 </ol>
-<a href="https://antigravity.in/dashboard" class="cta">Update Payment Method →</a>
+<a href="https://kepler.in/dashboard" class="cta">Update Payment Method →</a>
 <p style="color:#555; font-size:13px">Your access is still active for now. Please update within 7 days to avoid interruption.</p>
 """
     return _send(to_email, "Your payment failed — please update your payment method", _base_template(content))

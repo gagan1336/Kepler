@@ -1,4 +1,4 @@
-// ANTIGRAVITY — IPO Intelligence Screen
+﻿// KEPLER -- IPO Intelligence Screen
 // Tabs: Open | Upcoming | All. Live GMP, subscription, composite score.
 
 import { useState, useCallback, useEffect } from 'react'

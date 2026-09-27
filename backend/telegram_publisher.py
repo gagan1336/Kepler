@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — Telegram Publisher
+﻿"""
+KEPLER — Telegram Publisher
 Formats and sends morning digest to Pro and Elite channels at 8 AM IST.
 Sends admin alerts on pipeline failures.
 """
@@ -47,7 +47,7 @@ def _format_digest_message(
     date_str = digest_date.strftime("%A, %d %B %Y")
 
     lines = [
-        f"🌅 *ANTIGRAVITY MORNING DIGEST*",
+        f"🌅 *KEPLER MORNING BRIEF*",
         f"{date_str} | Market Mood: {mood_emoji} {market_mood}",
         "━━━━━━━━━━━━━━━━━━━━",
         "",
@@ -157,7 +157,7 @@ async def add_user_to_channel(telegram_user_id: str, channel_id: str) -> bool:
         await bot.send_message(
             chat_id=telegram_user_id,
             text=(
-                f"🎉 Welcome to Antigravity!\n\n"
+                f"🎉 Welcome to KEPLER!\n\n"
                 f"Here is your exclusive channel invite link:\n{link.invite_link}\n\n"
                 f"This link is for your use only and expires after one use."
             ),

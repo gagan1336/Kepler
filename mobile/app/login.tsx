@@ -71,8 +71,8 @@ export default function LoginScreen() {
           </TouchableOpacity>
 
           {/* Brand */}
-          <Text style={styles.brand}>⚡ ANTIGRAVITY</Text>
-          <Text style={styles.subtitle}>AI Market Intelligence</Text>
+          <Text style={styles.brand}>KEPLER</Text>
+          <Text style={styles.subtitle}>AI Stock Research · Indian Markets</Text>
 
           <Text style={styles.title}>Welcome back</Text>
 

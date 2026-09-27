@@ -1,4 +1,4 @@
-// ANTIGRAVITY — Premium Design System
+﻿// KEPLER -- Premium Design System
 // Dark-first. Intelligence-first. Bloomberg meets Linear.
 
 export const Colors = {

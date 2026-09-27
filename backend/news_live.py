@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — Live Market News Engine (news_live.py)
+﻿"""
+KEPLER -- Live Market News Engine
 Fetches RSS from 14 curated Indian finance feeds in parallel,
 scores each article for market impact, auto-categorizes into 8 buckets,
 deduplicates, and caches for 10 minutes.
@@ -325,7 +325,7 @@ def _fetch_feed(feed_info: Dict) -> List[Dict]:
         feed = feedparser.parse(
             feed_info["url"],
             request_headers={
-                "User-Agent": "Antigravity/2.0 Market Intelligence (+https://antigravity.in)",
+                "User-Agent": "KEPLER/2.0 AI Stock Research (+https://kepler.in)",
                 "Accept": "application/rss+xml, application/xml, text/xml",
             }
         )

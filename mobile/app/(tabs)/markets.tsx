@@ -1,4 +1,4 @@
-// ANTIGRAVITY — Markets Screen
+﻿// KEPLER -- Market Pulse Screen
 // Sub-tabs: Overview | Breakouts | Sectors
 
 import { useState, useCallback, useEffect, useRef } from 'react'

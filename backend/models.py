@@ -1,5 +1,5 @@
-"""
-ANTIGRAVITY — SQLAlchemy ORM Models
+﻿"""
+KEPLER -- SQLAlchemy ORM Models
 SQLite-compatible (local dev) + PostgreSQL-compatible (production).
 Uses JSON instead of JSONB, String instead of PostgreSQL UUID.
 """
