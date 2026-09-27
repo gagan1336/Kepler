@@ -35,7 +35,7 @@ from database import get_db, init_db
 from models import (
     User, DailyDigest, BreakoutWatchlist, SectorReport,
     Subscription, ContentLog, IPOBrief, DeepDive, MarketUpdate,
-    StockSignal,
+    StockSignal, AIQuota, AuditLog, PushToken,
 )
 from auth import (
     hash_password, get_user_by_email,
@@ -1741,11 +1741,9 @@ def sectors_live(request: Request, force_refresh: bool = Query(default=False)):
 
 ALLOWED_IMAGE_TYPES = {"image/jpeg", "image/png", "image/webp", "image/gif"}
 MAX_IMAGE_BYTES = 15 * 1024 * 1024   # 15 MB
-ADMIN_EMAIL     = "gagansolanki293@gmail.com"   # Only this account can manage signals
-
-
 def _is_admin(user: User) -> bool:
-    return user.email.lower() == ADMIN_EMAIL.lower()
+    admin = settings.admin_email or "gagansolanki293@gmail.com"
+    return user.email.lower() == admin.strip().lower()
 
 
 def _signal_dict(s: StockSignal, base_url: str) -> dict:
@@ -1898,3 +1896,81 @@ if __name__ == "__main__":
         reload=not settings.is_production,
         workers=1 if not settings.is_production else 4,
     )
+
+
+# ==============================================================================
+# PUSH NOTIFICATIONS -- Device token registration
+# ==============================================================================
+
+class PushTokenBody(BaseModel):
+    token: str
+    platform: str = None   # "android" / "ios"
+
+
+@app.post("/push-token")
+@limiter.limit("10/minute")
+def register_push_token(
+    request: Request,
+    body: PushTokenBody,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Register or refresh an Expo push token for the authenticated user."""
+    token = body.token.strip()
+    if not token.startswith("ExponentPushToken["):
+        raise HTTPException(status_code=400, detail="Invalid Expo push token format")
+
+    existing = db.query(PushToken).filter(PushToken.token == token).first()
+    if existing:
+        existing.user_id   = current_user.id
+        existing.platform  = body.platform
+        existing.is_active = True
+        existing.updated_at = datetime.utcnow()
+        db.commit()
+        return {"ok": True, "action": "updated"}
+
+    pt = PushToken(
+        user_id=current_user.id,
+        token=token,
+        platform=body.platform,
+        is_active=True,
+    )
+    db.add(pt)
+    db.commit()
+    logger.info(f"Push token registered: user={current_user.email} platform={body.platform}")
+    return {"ok": True, "action": "registered"}
+
+
+@app.delete("/push-token")
+@limiter.limit("10/minute")
+def deregister_push_token(
+    request: Request,
+    body: PushTokenBody,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Deactivate a push token (on logout or notification opt-out)."""
+    pt = db.query(PushToken).filter(
+        PushToken.token == body.token.strip(),
+        PushToken.user_id == current_user.id,
+    ).first()
+    if pt:
+        pt.is_active = False
+        db.commit()
+    return {"ok": True}
+
+
+# ==============================================================================
+# AI QUOTA -- User quota status
+# ==============================================================================
+
+@app.get("/me/quota")
+@limiter.limit("30/minute")
+def get_my_quota(
+    request: Request,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Return today AI quota usage for the authenticated user."""
+    from ai_quota import get_quota_status
+    return get_quota_status(db, current_user)

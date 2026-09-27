@@ -67,6 +67,7 @@ class Settings(BaseSettings):
     backend_url: str = Field(default="http://localhost:8000")
     cors_origins: str = Field(default="http://localhost:3000,http://localhost:3001,http://localhost:3002")
     environment: str = Field(default="development")
+    admin_email: str = Field(default="", description="Only this email can access admin endpoints")
 
     @property
     def cors_origins_list(self) -> List[str]:
