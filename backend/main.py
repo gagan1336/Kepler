@@ -688,17 +688,24 @@ class DeepDiveGenerateRequest(BaseModel):
 
 
 @app.post("/deepdive/generate")
+@limiter.limit("10/minute")
 def deepdive_generate(
+    request: Request,
     body: DeepDiveGenerateRequest,
     background_tasks: BackgroundTasks,
     current_user: User = Depends(require_plan("elite")),
     db: Session = Depends(get_db),
 ):
     """
-    Trigger AI-powered deep dive generation for an NSE stock — Elite admin only.
+    Trigger AI-powered deep dive generation for an NSE stock -- Elite only.
+    Quota-gated: max 5 deep dives per user per day.
     Runs in background; the deep dive is saved to DB when complete.
     Returns a job token immediately.
     """
+    # ── Quota gate: prevents Gemini cost abuse even by valid elite users ──
+    from ai_quota import check_and_increment_quota
+    check_and_increment_quota(db, current_user, "deepdive", settings.admin_email)
+
     symbol = body.symbol.upper().strip().replace(".NS", "")
     if not symbol or len(symbol) > 20:
         raise HTTPException(status_code=400, detail="Invalid symbol")
@@ -1693,6 +1700,18 @@ def admin_trigger_news(
     background_tasks.add_task(_run)
     logger.info(f"News pipeline manually triggered by {current_user.email}")
     return {"message": "News + AI pipeline started in background"}
+
+@app.get("/admin/gemini-usage")
+@limiter.limit("30/minute")
+def admin_gemini_usage(
+    request: Request,
+    current_user: User = Depends(get_current_user),
+):
+    """Return today server-wide Gemini API call count and remaining cap. Admin only."""
+    if not _is_admin(current_user):
+        raise HTTPException(status_code=403, detail="Admin only")
+    from gemini_guard import get_daily_usage
+    return get_daily_usage()
 
 
 @app.post("/admin/trigger/breakout-scan")
