@@ -1,4 +1,4 @@
-# ANTIGRAVITY Backend Dependencies
+# KEPLER Backend Dependencies
 
 # Web Framework
 fastapi==0.111.0
@@ -26,8 +26,7 @@ apscheduler==3.10.4
 pytz==2024.1
 
 # Market Data
-yfinance>=0.2.40      # Screener + EquityQuery API requires ≥0.2.37
-nsetools==1.0.11
+yfinance>=0.2.40
 pandas==2.2.2
 ta>=0.11.0
 numpy==1.26.4
@@ -49,9 +48,6 @@ razorpay==1.4.2
 
 # Email
 resend==2.2.0
-
-# Telegram
-python-telegram-bot==21.3
 
 # Rate Limiting
 slowapi==0.1.9
