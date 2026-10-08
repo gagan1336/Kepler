@@ -241,3 +241,20 @@ class PushToken(Base):
 
 
 Index("ix_push_tokens_user", PushToken.user_id)
+
+
+# -- Gemini Server-Wide Daily Counter ----------------------------------------
+class GeminiDailyUsage(Base):
+    """
+    Server-wide Gemini API call counter — one row per calendar day (UTC).
+    Replaces the fragile /tmp flat-file counter (which was unsafe under
+    multi-worker deployments and lost on container restarts).
+
+    Single row per day; call_count is incremented atomically via DB update.
+    """
+    __tablename__ = "gemini_daily_usage"
+
+    usage_date  = Column(Date, primary_key=True, nullable=False)  # PK = one row per day
+    call_count  = Column(Integer, nullable=False, default=0)
+    updated_at  = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+

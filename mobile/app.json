@@ -14,14 +14,12 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "in.kepler.app",
-      "infoPlist": {
-        "NSUserTrackingUsageDescription": "This identifier will be used to deliver personalized ads to you."
-      }
+      "bundleIdentifier": "in.kepler.app"
     },
     "android": {
       "package": "in.kepler.app",
       "versionCode": 1,
+      "privacyPolicyUrl": "https://sites.google.com/view/keplerprivacyandpolicy/home",
       "adaptiveIcon": {
         "backgroundColor": "#09090B",
         "foregroundImage": "./assets/android-icon-foreground.png"
@@ -47,9 +45,11 @@
       "typedRoutes": true
     },
     "extra": {
+      "router": {},
       "eas": {
-        "projectId": "YOUR_EAS_PROJECT_ID"
+        "projectId": "b321e87d-da0d-4947-b5d0-4bf7aa9ad8c4"
       }
-    }
+    },
+    "owner": "gaganagencyx"
   }
 }

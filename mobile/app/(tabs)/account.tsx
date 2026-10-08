@@ -221,12 +221,12 @@ export default function ProfileScreen() {
           <SettingsRow
             label="Privacy Policy"
             icon="◻"
-            onPress={() => Alert.alert('Privacy Policy', 'Your data is handled per our privacy policy.')}
+            onPress={() => Linking.openURL('https://sites.google.com/view/keplerprivacyandpolicy/home').catch(() => {})}
           />
           <SettingsRow
             label="Terms of Service"
             icon="◻"
-            onPress={() => Alert.alert('Terms', 'Educational platform. Not SEBI registered.')}
+            onPress={() => Linking.openURL('https://sites.google.com/view/keplerprivacyandpolicy/home').catch(() => {})}
             last
           />
         </SettingsSection>

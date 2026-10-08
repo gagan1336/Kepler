@@ -1,4 +1,4 @@
-﻿// KEPLER -- IPO Intelligence Screen
+// KEPLER -- IPO Intelligence Screen
 // Tabs: Open | Upcoming | All. Live GMP, subscription, composite score.
 
 import { useState, useCallback, useEffect } from 'react'
@@ -80,6 +80,14 @@ function IPOCard({ ipo }: { ipo: IpoBrief }) {
   const statusColor = isOpen ? Colors.positive : isUpcoming ? Colors.accent : Colors.textMuted
   const gradeColor = score?.grade ? (GRADE_COLOR[score.grade] ?? Colors.textMuted) : Colors.textMuted
 
+  // Build GMP display — single line to avoid row height mismatch
+  const gmpLine = gmp && gmp.gmp_price !== 0
+    ? `${gmp.gmp_price > 0 ? '+' : ''}₹${gmp.gmp_price}${gmp.premium_pct != null ? ` (${gmp.premium_pct > 0 ? '+' : ''}${gmp.premium_pct.toFixed(1)}%)` : ''}`
+    : '—'
+  const gmpColor = gmp && gmp.gmp_price !== 0
+    ? (gmp.gmp_price > 0 ? Colors.positive : Colors.negative)
+    : Colors.textMuted
+
   return (
     <TouchableOpacity
       style={[s.ipoCard, isOpen && { borderColor: Colors.positiveBorder }]}
@@ -88,67 +96,53 @@ function IPOCard({ ipo }: { ipo: IpoBrief }) {
     >
       {/* Header */}
       <View style={s.ipoHeader}>
-        <View style={{ flex: 1 }}>
-          <View style={s.ipoTopRow}>
-            <Text style={s.ipoName} numberOfLines={1}>{ipo.company_name}</Text>
-            <View style={[s.statusPill, { backgroundColor: statusColor + '15', borderColor: statusColor + '30' }]}>
-              <Text style={[s.statusText, { color: statusColor }]}>{ipo.status}</Text>
-            </View>
+        {/* Top row: company name + status pill */}
+        <View style={s.ipoTopRow}>
+          <Text style={s.ipoName} numberOfLines={2}>{ipo.company_name}</Text>
+          <View style={[s.statusPill, { backgroundColor: statusColor + '15', borderColor: statusColor + '30' }]}>
+            <Text style={[s.statusText, { color: statusColor }]}>{ipo.status}</Text>
           </View>
-          <View style={s.ipoSubRow}>
-            <View style={[s.smePill, { backgroundColor: isSME ? Colors.accentDim : Colors.bgElevated }]}>
-              <Text style={[s.smeText, { color: isSME ? Colors.accent : Colors.textMuted }]}>
-                {ipo.issue_type}
-              </Text>
-            </View>
-            <Text style={s.ipoExchange}>{ipo.exchange}</Text>
-            {ipo.industry && <Text style={s.ipoIndustry} numberOfLines={1}>{ipo.industry}</Text>}
+        </View>
+
+        {/* Sub row: type pill + exchange + industry */}
+        <View style={s.ipoSubRow}>
+          <View style={[s.smePill, { backgroundColor: isSME ? Colors.accentDim : Colors.bgElevated }]}>
+            <Text style={[s.smeText, { color: isSME ? Colors.accent : Colors.textMuted }]}>
+              {ipo.issue_type}
+            </Text>
           </View>
+          <Text style={s.ipoExchange}>{ipo.exchange}</Text>
+          {ipo.industry && (
+            <Text style={s.ipoIndustry} numberOfLines={1}>{ipo.industry}</Text>
+          )}
         </View>
       </View>
 
-      {/* Key data row */}
+      {/* Key data — single row, 4 cells, auto-shrink text */}
       <View style={s.ipoDataRow}>
-        {/* Price band */}
         <View style={s.dataCell}>
-          <Text style={s.dataCellLabel}>PRICE BAND</Text>
-          <Text style={[s.dataCellValue, MonoStyle]}>
+          <Text style={s.dataCellLabel}>PRICE</Text>
+          <Text style={[s.dataCellValue, MonoStyle]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
             {ipo.price_band ?? (ipo.price_band_max ? `₹${ipo.price_band_max}` : '—')}
           </Text>
         </View>
-
-        {/* GMP */}
-        <View style={s.dataCell}>
+        <View style={[s.dataCell, s.dataCellBorder]}>
           <Text style={s.dataCellLabel}>GMP</Text>
-          {gmp && gmp.gmp_price !== 0 ? (
-            <Text style={[s.dataCellValue, {
-              color: gmp.gmp_price > 0 ? Colors.positive : Colors.negative,
-            }, MonoStyle]}>
-              {gmp.gmp_price > 0 ? '+' : ''}₹{gmp.gmp_price}
-              {gmp.premium_pct != null ? ` (${gmp.premium_pct > 0 ? '+' : ''}${gmp.premium_pct.toFixed(1)}%)` : ''}
-            </Text>
-          ) : <Text style={[s.dataCellValue, { color: Colors.textMuted }]}>—</Text>}
+          <Text style={[s.dataCellValue, { color: gmpColor }, MonoStyle]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
+            {gmpLine}
+          </Text>
         </View>
-
-        {/* Subscription */}
-        <View style={s.dataCell}>
+        <View style={[s.dataCell, s.dataCellBorder]}>
           <Text style={s.dataCellLabel}>SUBS</Text>
-          {sub && sub.total > 0 ? (
-            <Text style={[s.dataCellValue, { color: subColor(sub.total) }, MonoStyle]}>
-              {sub.total.toFixed(1)}×
-            </Text>
-          ) : <Text style={[s.dataCellValue, { color: Colors.textMuted }]}>—</Text>}
+          <Text style={[s.dataCellValue, { color: sub && sub.total > 0 ? subColor(sub.total) : Colors.textMuted }, MonoStyle]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
+            {sub && sub.total > 0 ? `${sub.total.toFixed(1)}×` : '—'}
+          </Text>
         </View>
-
-        {/* Score */}
         {score && (
-          <View style={s.dataCell}>
+          <View style={[s.dataCell, s.dataCellBorder]}>
             <Text style={s.dataCellLabel}>GRADE</Text>
-            <Text style={[s.dataCellValue, { color: gradeColor }, MonoStyle]}>
-              {score.grade}
-              <Text style={{ fontSize: FontSize.xxs, color: Colors.textMuted }}>
-                {' '}{score.composite_score.toFixed(0)}/100
-              </Text>
+            <Text style={[s.dataCellValue, { color: gradeColor }, MonoStyle]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
+              {score.grade} <Text style={{ fontSize: FontSize.xxs, color: Colors.textMuted }}>{score.composite_score.toFixed(0)}</Text>
             </Text>
           </View>
         )}
@@ -189,7 +183,12 @@ function IPOCard({ ipo }: { ipo: IpoBrief }) {
                 ].map(cell => (
                   <View key={cell.l} style={s.subCell}>
                     <Text style={s.subLabel}>{cell.l}</Text>
-                    <Text style={[s.subVal, { color: subColor(cell.v) }, cell.bold && { fontWeight: FontWeight.black }, MonoStyle]}>
+                    <Text style={[
+                      s.subVal,
+                      { color: subColor(cell.v) },
+                      cell.bold ? { fontWeight: FontWeight.black } : {},
+                      MonoStyle,
+                    ]}>
                       {cell.v.toFixed(1)}×
                     </Text>
                   </View>
@@ -211,24 +210,27 @@ function IPOCard({ ipo }: { ipo: IpoBrief }) {
             <View style={s.scoreSection}>
               <Text style={s.subTableTitle}>SCORE BREAKDOWN</Text>
               {[
-                { l: 'GMP Signal',  v: score.gmp_score,   max: 20 },
-                { l: 'Subscription',v: score.sub_score,   max: 25 },
+                { l: 'GMP Signal',   v: score.gmp_score,  max: 20 },
+                { l: 'Subscription', v: score.sub_score,  max: 25 },
                 { l: 'Issue Quality',v: score.qual_score, max: 15 },
-                { l: 'Valuation',   v: score.val_score,   max: 15 },
-                { l: 'Market Timing',v: score.time_score, max: 15 },
-                { l: 'Fundamentals',v: score.fund_score,  max: 10 },
-              ].map(row => (
-                <View key={row.l} style={s.scoreRow}>
-                  <Text style={s.scoreLabel}>{row.l}</Text>
-                  <View style={s.scoreBarTrack}>
-                    <View style={[s.scoreBarFill, {
-                      width: `${(row.v / row.max) * 100}%`,
-                      backgroundColor: row.v / row.max > 0.6 ? Colors.positive : row.v / row.max > 0.3 ? Colors.warning : Colors.negative,
-                    }]} />
+                { l: 'Valuation',    v: score.val_score,  max: 15 },
+                { l: 'Timing',       v: score.time_score, max: 15 },
+                { l: 'Fundamentals', v: score.fund_score, max: 10 },
+              ].map(row => {
+                const pct = row.max > 0 ? row.v / row.max : 0
+                const barColor = pct > 0.6 ? Colors.positive : pct > 0.3 ? Colors.warning : Colors.negative
+                return (
+                  <View key={row.l} style={s.scoreRow}>
+                    <Text style={s.scoreLabel} numberOfLines={1}>{row.l}</Text>
+                    <View style={s.scoreBarTrack}>
+                      {/* Use flex instead of percentage to avoid RN layout issues */}
+                      <View style={[s.scoreBarFill, { flex: pct, backgroundColor: barColor }]} />
+                      <View style={{ flex: 1 - pct }} />
+                    </View>
+                    <Text style={[s.scoreVal, MonoStyle]}>{row.v}/{row.max}</Text>
                   </View>
-                  <Text style={[s.scoreVal, MonoStyle]}>{row.v}/{row.max}</Text>
-                </View>
-              ))}
+                )
+              })}
             </View>
           )}
 
@@ -368,8 +370,12 @@ const s = StyleSheet.create({
 
   // Stats
   statsScroll: { borderBottomWidth: 1, borderBottomColor: Colors.border },
-  statsBar: { flexDirection: 'row', paddingHorizontal: Spacing.xl, paddingVertical: Spacing.md, gap: Spacing.xl },
-  statCell: { alignItems: 'center', gap: 3, minWidth: 50 },
+  statsBar: {
+    flexDirection: 'row',
+    paddingHorizontal: Spacing.xl, paddingVertical: Spacing.md,
+    gap: Spacing.xl,
+  },
+  statCell: { alignItems: 'center', gap: 3, minWidth: 56 },
   statVal: { fontSize: FontSize.h3, fontWeight: FontWeight.bold, color: Colors.textPrimary },
   statLabel: { fontSize: FontSize.xxs, color: Colors.textMuted, fontWeight: FontWeight.bold, letterSpacing: 0.8 },
 
@@ -382,30 +388,46 @@ const s = StyleSheet.create({
     padding: Spacing.xl, marginBottom: Spacing.sm,
   },
   ipoHeader: { marginBottom: Spacing.md },
-  ipoTopRow: { flexDirection: 'row', alignItems: 'flex-start', gap: Spacing.sm, marginBottom: Spacing.xs },
+
+  // Top row: company name + pill — name must shrink, pill must not
+  ipoTopRow: {
+    flexDirection: 'row', alignItems: 'flex-start',
+    gap: Spacing.sm, marginBottom: Spacing.xs,
+  },
   ipoName: {
-    flex: 1, fontSize: FontSize.base, fontWeight: FontWeight.bold,
+    flex: 1,
+    fontSize: FontSize.base, fontWeight: FontWeight.bold,
     color: Colors.textPrimary, letterSpacing: -0.2,
   },
   statusPill: {
     paddingHorizontal: Spacing.sm, paddingVertical: 4,
     borderRadius: Radius.full, borderWidth: 1,
+    flexShrink: 0, // never let the pill shrink
   },
   statusText: { fontSize: FontSize.xxs, fontWeight: FontWeight.black, letterSpacing: 0.5 },
-  ipoSubRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.sm, flexWrap: 'wrap' },
-  smePill: {
-    paddingHorizontal: Spacing.sm, paddingVertical: 3, borderRadius: Radius.xs,
+
+  // Sub row: don't let industry flex inside a wrap row (causes broken layout)
+  ipoSubRow: {
+    flexDirection: 'row', alignItems: 'center',
+    gap: Spacing.sm, flexWrap: 'wrap',
   },
+  smePill: { paddingHorizontal: Spacing.sm, paddingVertical: 3, borderRadius: Radius.xs },
   smeText: { fontSize: FontSize.xxs, fontWeight: FontWeight.bold, letterSpacing: 0.5 },
   ipoExchange: { fontSize: FontSize.xxs, color: Colors.textMuted },
-  ipoIndustry: { fontSize: FontSize.xxs, color: Colors.textMuted, flex: 1 },
+  // NO flex:1 here — flex:1 inside flexWrap breaks layout
+  ipoIndustry: { fontSize: FontSize.xxs, color: Colors.textMuted, flexShrink: 1 },
 
-  // Data row
+  // Data row: single row, up to 4 cells separated by left border
   ipoDataRow: {
-    flexDirection: 'row', gap: Spacing.lg, marginBottom: Spacing.md,
-    paddingTop: Spacing.md, borderTopWidth: 1, borderTopColor: Colors.border,
+    flexDirection: 'row',
+    borderTopWidth: 1, borderTopColor: Colors.border,
+    paddingTop: Spacing.md, marginBottom: Spacing.md,
   },
-  dataCell: { flex: 1, gap: 4 },
+  dataCell: { flex: 1, gap: 4, paddingRight: Spacing.sm, minWidth: 0 },
+  dataCellBorder: {
+    borderLeftWidth: 1, borderLeftColor: Colors.border,
+    paddingLeft: Spacing.sm,
+  },
   dataCellLabel: {
     fontSize: FontSize.xxs, color: Colors.textMuted,
     fontWeight: FontWeight.bold, letterSpacing: 0.8,
@@ -425,8 +447,8 @@ const s = StyleSheet.create({
     fontSize: FontSize.xxs, fontWeight: FontWeight.bold,
     color: Colors.textMuted, letterSpacing: 1.2, marginBottom: Spacing.sm,
   },
-  subRow: { flexDirection: 'row', gap: Spacing.xl },
-  subCell: { alignItems: 'center', gap: 3 },
+  subRow: { flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.xl },
+  subCell: { alignItems: 'center', gap: 3, minWidth: 44 },
   subLabel: { fontSize: FontSize.xxs, color: Colors.textMuted },
   subVal: { fontSize: FontSize.sm, fontWeight: FontWeight.bold },
 
@@ -439,16 +461,23 @@ const s = StyleSheet.create({
   estLabel: { fontSize: FontSize.xxs, color: Colors.textSecondary, fontWeight: FontWeight.bold },
   estValue: { fontSize: FontSize.base, fontWeight: FontWeight.black },
 
-  // Score
+  // Score — use flex ratio instead of percentage width for bars
   scoreSection: { marginBottom: Spacing.lg },
-  scoreRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.md, marginBottom: Spacing.sm },
-  scoreLabel: { fontSize: FontSize.xxs, color: Colors.textMuted, width: 90 },
+  scoreRow: {
+    flexDirection: 'row', alignItems: 'center',
+    gap: Spacing.sm, marginBottom: Spacing.sm,
+  },
+  scoreLabel: { fontSize: FontSize.xxs, color: Colors.textMuted, width: 80 },
   scoreBarTrack: {
     flex: 1, height: 4, backgroundColor: Colors.bgElevated,
     borderRadius: 2, overflow: 'hidden',
+    flexDirection: 'row', // children are flex fractions
   },
   scoreBarFill: { height: 4, borderRadius: 2 },
-  scoreVal: { fontSize: FontSize.xxs, color: Colors.textSecondary, width: 32, textAlign: 'right' },
+  scoreVal: {
+    fontSize: FontSize.xxs, color: Colors.textSecondary,
+    width: 34, textAlign: 'right',
+  },
 
   rhpBtn: {
     paddingVertical: Spacing.md, alignItems: 'center',

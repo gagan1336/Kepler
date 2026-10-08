@@ -61,13 +61,13 @@ def run_migration():
             logger.info(f"  - {t}")
 
         # Verify required tables exist
-        required = {"ai_quotas", "audit_logs", "push_tokens"}
+        required = {"ai_quotas", "audit_logs", "push_tokens", "gemini_daily_usage"}
         missing = required - set(tables)
         if missing:
             logger.error(f"MISSING TABLES: {missing}")
             sys.exit(1)
         else:
-            logger.success("All required tables present: ai_quotas, audit_logs, push_tokens")
+            logger.success("All required tables present: ai_quotas, audit_logs, push_tokens, gemini_daily_usage")
 
     except Exception as e:
         logger.error(f"Migration FAILED: {e}")

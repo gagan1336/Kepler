@@ -610,11 +610,13 @@ def ipo_detail(
 @app.post("/ipo/create")
 def ipo_create(
     body: IPOCreateRequest,
-    current_user: User = Depends(require_plan("elite")),
+    current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
     background_tasks: BackgroundTasks = BackgroundTasks(),
 ):
-    """Trigger IPO analysis — elite only (admin trigger)."""
+    """Trigger IPO analysis — admin only (ADMIN_EMAIL)."""
+    if not _is_admin(current_user):
+        raise HTTPException(status_code=403, detail="Admin access required")
     background_tasks.add_task(_run_ipo_analysis, body.dict(), db)
     return {"message": "IPO analysis queued"}
 
@@ -919,20 +921,26 @@ def subscription_cancel(
 
 @app.post("/webhooks/razorpay")
 async def razorpay_webhook(request: Request, db: Session = Depends(get_db)):
-    """Handle all Razorpay webhook events with signature verification."""
+    """Handle all Razorpay webhook events with mandatory signature verification."""
     body_bytes = await request.body()
     signature = request.headers.get("X-Razorpay-Signature", "")
 
-    # Verify signature
-    if settings.razorpay_webhook_secret:
-        expected = hmac.new(
-            key=settings.razorpay_webhook_secret.encode(),
-            msg=body_bytes,
-            digestmod=hashlib.sha256,
-        ).hexdigest()
-        if not hmac.compare_digest(expected, signature):
-            logger.warning("Razorpay webhook signature mismatch")
-            raise HTTPException(status_code=400, detail="Invalid signature")
+    # SECURITY: Reject ALL webhook calls if the secret is not configured.
+    # Without this, an attacker can POST fake subscription.activated events
+    # to upgrade any user to Pro/Elite for free.
+    if not settings.razorpay_webhook_secret:
+        logger.error("RAZORPAY_WEBHOOK_SECRET is not set — rejecting webhook to prevent fraud")
+        raise HTTPException(status_code=503, detail="Payment system misconfigured")
+
+    # Verify HMAC-SHA256 signature unconditionally
+    expected = hmac.new(
+        key=settings.razorpay_webhook_secret.encode(),
+        msg=body_bytes,
+        digestmod=hashlib.sha256,
+    ).hexdigest()
+    if not hmac.compare_digest(expected, signature):
+        logger.warning("Razorpay webhook signature mismatch — possible spoofed request")
+        raise HTTPException(status_code=400, detail="Invalid signature")
 
     try:
         payload = json.loads(body_bytes)
@@ -1613,8 +1621,8 @@ def screener_fundamentals(
     Requires login. Cached 24 hours per symbol.
     """
     symbol = symbol.upper().strip().replace(".NS", "")
-    if len(symbol) > 20:
-        raise HTTPException(status_code=400, detail="Invalid symbol")
+    if len(symbol) > 20 or not symbol.replace("-", "").replace("&", "").replace(".", "").isalnum():
+        raise HTTPException(status_code=400, detail="Invalid symbol format")
     try:
         from fundamentals_fetcher import fetch_fundamentals, get_cache_stats
         data = fetch_fundamentals(symbol)
@@ -1655,10 +1663,12 @@ class DeepDiveCreateRequest(BaseModel):
 @app.post("/admin/deepdive")
 def admin_create_deepdive(
     body: DeepDiveCreateRequest,
-    current_user: User = Depends(require_plan("elite")),
+    current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    """Publish a new Deep Dive report manually — Elite admin only."""
+    """Publish a new Deep Dive report manually — admin only (ADMIN_EMAIL)."""
+    if not _is_admin(current_user):
+        raise HTTPException(status_code=403, detail="Admin access required")
     dive = DeepDive(
         title=body.title,
         summary=body.summary,
@@ -1682,10 +1692,12 @@ def admin_create_deepdive(
 @app.post("/admin/trigger/news-pipeline")
 def admin_trigger_news(
     background_tasks: BackgroundTasks,
-    current_user: User = Depends(require_plan("elite")),
+    current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    """Manually trigger the news + AI pipeline — Elite only (admin use)."""
+    """Manually trigger the news + AI pipeline — admin only (ADMIN_EMAIL)."""
+    if not _is_admin(current_user):
+        raise HTTPException(status_code=403, detail="Admin access required")
     def _run():
         from news_collector import collect_all_news
         from ai_processor import process_news
@@ -1717,9 +1729,11 @@ def admin_gemini_usage(
 @app.post("/admin/trigger/breakout-scan")
 def admin_trigger_breakout(
     background_tasks: BackgroundTasks,
-    current_user: User = Depends(require_plan("elite")),
+    current_user: User = Depends(get_current_user),
 ):
-    """Manually trigger the breakout scanner — Elite only (admin use)."""
+    """Manually trigger the breakout scanner — admin only (ADMIN_EMAIL)."""
+    if not _is_admin(current_user):
+        raise HTTPException(status_code=403, detail="Admin access required")
     def _run():
         from breakout_scanner import scan_breakouts
         from database import SessionLocal
@@ -1761,7 +1775,10 @@ def sectors_live(request: Request, force_refresh: bool = Query(default=False)):
 ALLOWED_IMAGE_TYPES = {"image/jpeg", "image/png", "image/webp", "image/gif"}
 MAX_IMAGE_BYTES = 15 * 1024 * 1024   # 15 MB
 def _is_admin(user: User) -> bool:
-    admin = settings.admin_email or "gagansolanki293@gmail.com"
+    """Returns True only if the user's email matches ADMIN_EMAIL env var."""
+    admin = settings.admin_email
+    if not admin:
+        return False  # No admin configured — reject all admin access
     return user.email.lower() == admin.strip().lower()
 
 
@@ -1805,7 +1822,7 @@ async def upload_signal(
     if not _is_admin(current_user):
         raise HTTPException(status_code=403, detail="Admin access required")
 
-    # Validate content type
+    # Validate content-type header (client-supplied — not fully trusted)
     if image.content_type not in ALLOWED_IMAGE_TYPES:
         raise HTTPException(status_code=400, detail="Only JPEG, PNG, WebP or GIF images are allowed")
 
@@ -1813,6 +1830,30 @@ async def upload_signal(
     data = await image.read()
     if len(data) > MAX_IMAGE_BYTES:
         raise HTTPException(status_code=400, detail="Image must be under 15 MB")
+
+    # Validate actual file content via magic bytes (defence-in-depth against
+    # spoofed content-type headers — e.g. a PHP script sent as image/jpeg)
+    _MAGIC_BYTES: dict[bytes, str] = {
+        b"\xff\xd8\xff": "jpeg",          # JPEG
+        b"\x89PNG\r\n": "png",            # PNG
+        b"RIFF": "webp",                   # WebP (RIFF....WEBP)
+        b"GIF87a": "gif",                  # GIF87
+        b"GIF89a": "gif",                  # GIF89
+    }
+    header = data[:12]
+    detected = None
+    for magic, fmt in _MAGIC_BYTES.items():
+        if header.startswith(magic):
+            detected = fmt
+            break
+    # Special-case WebP: magic is RIFF....WEBP
+    if header[:4] == b"RIFF" and header[8:12] == b"WEBP":
+        detected = "webp"
+    if detected is None:
+        raise HTTPException(
+            status_code=400,
+            detail="File content does not match a valid image format (JPEG, PNG, WebP, GIF)",
+        )
 
     # Build a unique filename: {timestamp}_{symbol}_{uuid}.ext
     ext = Path(image.filename or "img").suffix.lower() or ".jpg"

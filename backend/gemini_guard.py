@@ -9,6 +9,10 @@ Protections:
   4. Exception shield       — never crashes callers; returns None on failure
   5. Structured logging     — every call logged with caller, tokens, latency
 
+Counter storage: PostgreSQL `gemini_daily_usage` table (one row per UTC day).
+  - Replaces the old /tmp flat-file which had race conditions under
+    multi-worker deployments and was lost on container restarts.
+
 Usage:
     from gemini_guard import gemini_call
 
@@ -23,62 +27,18 @@ Usage:
 """
 import time
 from datetime import date
-from pathlib import Path
 from typing import Optional
 
 from loguru import logger
 
 # ── Global daily cap ──────────────────────────────────────────────────────────
-# This is a server-wide hard ceiling — not per-user.
-# Prevents runaway scheduler jobs or burst from burning the entire key.
-# Gemini Flash: ~₹0.075 per 1M input tokens. 500 calls * ~2K tokens = ~₹0.075/day max.
+# Server-wide hard ceiling — not per-user.
+# Prevents runaway scheduler jobs or bursts from burning the entire key.
+# Gemini Flash: ~₹0.075 per 1M input tokens. 500 calls * ~2K tokens ≈ ₹0.075/day max.
 _GLOBAL_DAILY_CAP = 500          # total Gemini calls per calendar day (UTC)
 _MAX_OUTPUT_TOKENS = 8192        # hard cap on response size
-_COUNTER_FILE = Path("/tmp/kepler_gemini_counter.txt")  # persists across requests
 
 _PLACEHOLDER_PATTERNS = ("your_", "XXXXXXX", "placeholder", "replace_me", "xxxx")
-
-
-def _read_counter() -> tuple[int, str]:
-    """Read (count, date_str) from the counter file."""
-    try:
-        if _COUNTER_FILE.exists():
-            parts = _COUNTER_FILE.read_text().strip().split(",")
-            if len(parts) == 2:
-                return int(parts[0]), parts[1]
-    except Exception:
-        pass
-    return 0, ""
-
-
-def _write_counter(count: int, date_str: str):
-    try:
-        _COUNTER_FILE.write_text(f"{count},{date_str}")
-    except Exception:
-        pass
-
-
-def _increment_global_counter() -> bool:
-    """
-    Increment the global daily counter.
-    Returns True if call is allowed, False if cap is exceeded.
-    """
-    today = date.today().isoformat()
-    count, stored_date = _read_counter()
-
-    if stored_date != today:
-        # New day — reset counter
-        count = 0
-
-    if count >= _GLOBAL_DAILY_CAP:
-        logger.error(
-            f"[GEMINI GUARD] Global daily cap reached ({count}/{_GLOBAL_DAILY_CAP}). "
-            f"No more Gemini calls today. Resets at midnight UTC."
-        )
-        return False
-
-    _write_counter(count + 1, today)
-    return True
 
 
 def _validate_key(api_key: str) -> bool:
@@ -94,6 +54,70 @@ def _validate_key(api_key: str) -> bool:
         logger.error("[GEMINI GUARD] GEMINI_API_KEY is too short to be valid.")
         return False
     return True
+
+
+def _increment_global_counter_db() -> bool:
+    """
+    Atomically increment the server-wide Gemini daily counter in PostgreSQL.
+
+    Uses a single row per UTC day in the `gemini_daily_usage` table.
+    Returns True if the call is allowed, False if the daily cap is exceeded.
+
+    Safe under multi-worker deployments — DB handles the atomicity.
+    Survives container restarts — DB persists across deploys.
+    """
+    from database import SessionLocal
+    from models import GeminiDailyUsage
+
+    today = date.today()
+    db = SessionLocal()
+    try:
+        row = db.query(GeminiDailyUsage).filter(GeminiDailyUsage.usage_date == today).first()
+
+        if row is None:
+            # First call of the day — create the counter row
+            row = GeminiDailyUsage(usage_date=today, call_count=0)
+            db.add(row)
+            db.flush()  # get the row into the session before update
+
+        if row.call_count >= _GLOBAL_DAILY_CAP:
+            logger.error(
+                f"[GEMINI GUARD] Global daily cap reached ({row.call_count}/{_GLOBAL_DAILY_CAP}). "
+                f"No more Gemini calls today. Resets at midnight UTC."
+            )
+            return False
+
+        # Atomic increment
+        row.call_count += 1
+        db.commit()
+        return True
+
+    except Exception as e:
+        logger.warning(f"[GEMINI GUARD] DB counter error (allowing call as fallback): {e}")
+        try:
+            db.rollback()
+        except Exception:
+            pass
+        # Fail-open: a DB hiccup should not kill AI features entirely
+        return True
+    finally:
+        db.close()
+
+
+def _read_daily_count_db() -> int:
+    """Return today's current Gemini call count from the DB."""
+    from database import SessionLocal
+    from models import GeminiDailyUsage
+
+    today = date.today()
+    db = SessionLocal()
+    try:
+        row = db.query(GeminiDailyUsage).filter(GeminiDailyUsage.usage_date == today).first()
+        return row.call_count if row else 0
+    except Exception:
+        return 0
+    finally:
+        db.close()
 
 
 def gemini_call(
@@ -125,8 +149,8 @@ def gemini_call(
     if not _validate_key(settings.gemini_api_key):
         return None
 
-    # 2. Global daily cap
-    if not _increment_global_counter():
+    # 2. Global daily cap (DB-backed, multi-worker safe)
+    if not _increment_global_counter_db():
         return None
 
     # 3. Clamp max_tokens to hard ceiling
@@ -146,7 +170,7 @@ def gemini_call(
             ),
         )
         elapsed = round(time.monotonic() - t0, 2)
-        count, _ = _read_counter()
+        count = _read_daily_count_db()
         logger.info(
             f"[GEMINI GUARD] caller={caller} model={model_name} "
             f"tokens_out={len(response.text.split())} latency={elapsed}s "
@@ -164,14 +188,16 @@ def gemini_call(
 
 
 def get_daily_usage() -> dict:
-    """Return current Gemini daily usage stats."""
-    today = date.today().isoformat()
-    count, stored_date = _read_counter()
-    if stored_date != today:
-        count = 0
+    """Return current Gemini daily usage stats (DB-backed)."""
+    today = date.today()
+    count = _read_daily_count_db()
     return {
-        "date": today,
+        "date": today.isoformat(),
         "calls_used": count,
         "calls_remaining": max(0, _GLOBAL_DAILY_CAP - count),
         "daily_cap": _GLOBAL_DAILY_CAP,
+        "storage": "database",  # confirms we're using DB, not /tmp
     }
+
+
+

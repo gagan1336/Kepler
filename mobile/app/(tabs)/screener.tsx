@@ -18,7 +18,8 @@ const LOADERS: Record<ScreenTab, (() => Promise<any[]>) | null> = {
   quality:  apiScreenerQuality,
   value:    apiScreenerValue,
   dividend: apiScreenerDividend,
-  swing:    apiScreenerSwing,
+  // swing needs a preset — default to 'momentum'
+  swing:    () => apiScreenerSwing('momentum').then(r => r.stocks),
   search:   null,
 }
 
@@ -53,10 +54,10 @@ function StockRow({ stock }: { stock: ScreenerStock }) {
       <View style={styles.stockMain}>
         <View style={{ flex: 1 }}>
           <Text style={styles.symbol}>{stock.symbol}</Text>
-          <Text style={styles.stockName} numberOfLines={1}>{stock.name}</Text>
+          <Text style={styles.stockName} numberOfLines={1}>{stock.company_name}</Text>
         </View>
         <View style={styles.stockRight}>
-          {stock.price != null && <Text style={styles.price}>₹{stock.price.toFixed(1)}</Text>}
+          {stock.current_price != null && <Text style={styles.price}>₹{stock.current_price.toFixed(1)}</Text>}
           {stock.change_pct != null && (
             <Text style={[styles.chg, { color: chgColor(stock.change_pct) }]}>
               {stock.change_pct >= 0 ? '+' : ''}{stock.change_pct.toFixed(2)}%
@@ -81,9 +82,9 @@ function StockRow({ stock }: { stock: ScreenerStock }) {
               { l: 'P/B', v: fmt(stock.pb_ratio) },
               { l: 'ROE', v: fmt(stock.roe, '%') },
               { l: 'ROCE', v: fmt(stock.roce, '%') },
-              { l: 'D/E', v: fmt(stock.debt_equity) },
-              { l: 'Rev CAGR 3Y', v: fmt(stock.revenue_growth_3y, '%') },
-              { l: 'PAT CAGR 3Y', v: fmt(stock.profit_growth_3y, '%') },
+              { l: 'D/E', v: fmt(stock.debt_to_equity) },
+              { l: 'Rev Growth', v: fmt(stock.revenue_growth, '%') },
+              { l: 'PAT Growth', v: fmt(stock.earnings_growth, '%') },
               { l: 'Div Yield', v: fmt(stock.dividend_yield, '%') },
             ].map(({ l, v }) => (
               <View key={l} style={styles.detailCell}>
