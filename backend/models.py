@@ -169,7 +169,7 @@ class StockSignal(Base):
     __tablename__ = "stock_signals"
 
     id               = Column(String(36), primary_key=True, default=gen_uuid)
-    symbol           = Column(String(20),  nullable=False, index=True)        # NSE symbol e.g. "RELIANCE"
+    symbol           = Column(String(20),  nullable=False)                    # NSE symbol e.g. "RELIANCE"
     title            = Column(String(255), nullable=False)                    # e.g. "Bullish Cup & Handle breakout"
     description      = Column(Text,        nullable=True)                     # Analyst notes on the setup
     timeframe        = Column(String(20),  nullable=True)                     # "Daily" / "Weekly" / "15m" etc.
@@ -184,7 +184,7 @@ class StockSignal(Base):
     created_at       = Column(DateTime,    default=datetime.utcnow, nullable=False)
 
 Index("ix_stock_signals_created", StockSignal.created_at)
-Index("ix_stock_signals_symbol",  StockSignal.symbol)
+Index("ix_stock_signals_symbol",  StockSignal.symbol)  # single definition — no index=True on column
 
 
 # -- AI Quota Tracking -------------------------------------------------------
