@@ -1,22 +1,25 @@
-﻿// KEPLER -- AdMob Unit IDs
-// Using Google's official test IDs during development.
-// Replace with your real AdMob IDs before publishing.
+// KEPLER -- AdMob Unit IDs
+// App ID is real. Unit IDs below are Google test IDs.
+// To go live: create ad units in AdMob console → replace PROD strings → set IS_TEST = false
 
-const IS_TEST = true   // flip to false and fill PROD IDs before release
+const IS_TEST = true   // ← flip to false + fill PROD IDs before release
+
+// Your AdMob App ID (Android)
+export const ADMOB_APP_ID = 'ca-app-pub-2843056453636534~7776390491'
 
 export const AdUnits = {
-  // ── Banner ─────────────────────────────────────────────────────────────────
-  BANNER: IS_TEST
-    ? 'ca-app-pub-3940256099942544/6300978111'            // Android test
-    : 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX',            // TODO: replace
-
-  // ── Rewarded (for unlocking Kepler/Swing/DeepDives) ───────────────────────
+  // ── Rewarded (unlock Screener / DeepDive full read) ──────────────────────
   REWARDED: IS_TEST
-    ? 'ca-app-pub-3940256099942544/5224354917'            // Android test
-    : 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX',            // TODO: replace
+    ? 'ca-app-pub-3940256099942544/5224354917'           // Google test rewarded
+    : 'ca-app-pub-2843056453636534/XXXXXXXXXX',           // TODO: replace with your unit ID
 
-  // ── Interstitial (between screener loads) ─────────────────────────────────
+  // ── Interstitial (between screener runs) ─────────────────────────────────
   INTERSTITIAL: IS_TEST
-    ? 'ca-app-pub-3940256099942544/1033173712'            // Android test
-    : 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX',            // TODO: replace
+    ? 'ca-app-pub-3940256099942544/1033173712'           // Google test interstitial
+    : 'ca-app-pub-2843056453636534/XXXXXXXXXX',           // TODO: replace with your unit ID
+
+  // ── Rewarded Interstitial (mid-session, no forced watch) ─────────────────
+  REWARDED_INTERSTITIAL: IS_TEST
+    ? 'ca-app-pub-3940256099942544/5354046379'           // Google test rewarded interstitial
+    : 'ca-app-pub-2843056453636534/XXXXXXXXXX',           // TODO: replace with your unit ID
 }

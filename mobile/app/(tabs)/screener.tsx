@@ -10,6 +10,7 @@ import {
   apiScreenerSwing, apiStockSearch, ScreenerStock,
 } from '@/lib/api'
 import { RewardedAdGate } from '@/components/ads/RewardedAdGate'
+import { showInterstitial } from '@/lib/InterstitialService'
 import { Colors, FontSize, Radius, Spacing } from '@/constants/theme'
 
 type ScreenTab = 'quality' | 'value' | 'dividend' | 'swing' | 'search'
@@ -116,6 +117,8 @@ export default function ScreenerScreen() {
       const data = await loader()
       setStocks(data)
       setLoaded(t)
+      // Show interstitial after results are displayed (non-blocking)
+      setTimeout(() => showInterstitial(), 800)
     } catch (e: any) {
       console.log('Screener error', e)
       setStocks([])

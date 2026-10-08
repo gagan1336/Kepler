@@ -6,6 +6,7 @@ import { useFonts } from 'expo-font'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { AuthProvider } from '@/lib/auth.tsx'
 import { Colors } from '@/constants/theme'
+import { preloadInterstitial } from '@/lib/InterstitialService'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -23,6 +24,13 @@ export default function RootLayout() {
 
   useEffect(() => {
     SplashScreen.hideAsync()
+    // Init AdMob SDK and preload first interstitial
+    try {
+      const { default: mobileAds } = require('react-native-google-mobile-ads')
+      mobileAds().initialize().then(() => preloadInterstitial()).catch(() => {})
+    } catch {
+      // Not available in Expo Go — no-op
+    }
   }, [])
 
   return (
